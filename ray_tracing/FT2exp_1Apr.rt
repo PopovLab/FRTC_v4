@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/Lab/FRTC_v3/ray_tracing/Ft2_Apr_-90.dat",
+      "source": "D:/Lab/FRTC_v4/ray_tracing/FT2exp_2Apr.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
