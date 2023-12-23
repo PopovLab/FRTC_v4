@@ -95,7 +95,7 @@ contains
         class(Trajectory), intent(inout) :: this
         integer, intent(in) :: iu
         write (iu,'(3(A,10x))') 'theta',  'index', 'mbad'
-        write (iu,'(f7.5,1x,i5,2x,i5,2x)') this%tetin, this%spectrum_point_index, this%mbad
+        write (iu,'(f8.5,1x,i5,2x,i5,2x)') this%tetin, this%spectrum_point_index, this%mbad
         write (iu,*)
 
     end subroutine
