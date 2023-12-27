@@ -123,7 +123,7 @@ contains
                         xmin = current_trajectory%xmzap
                         rin = current_trajectory%rzap
                         yn3 = current_trajectory%yn3zap
-                        pow = current_trajectory%powexit
+                        pow = powexit 
                         irs = current_trajectory%irszap
                         iw =  current_trajectory%iwzap
                         izn = current_trajectory%iznzap
@@ -198,7 +198,7 @@ contains
                 end if
 20              continue
                 if(iout.ne.0) then
-                    print *,'**************'
+                    !print *,'**************'
                     !dcoll(ie+1) = inak
                     !jrad(inak+1) = 0
                     !lfree = inak+2
