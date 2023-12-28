@@ -239,7 +239,7 @@
       },
       "ismth": {
         "title": "ismth",
-        "value": 0,
+        "value": 1,
         "type": "int",
         "description": "if=0, no smoothing in Ne(rho),Te(rho),Ti(rho)"
       },
@@ -263,13 +263,13 @@
       },
       "itor": {
         "title": "itor",
-        "value": 1,
+        "value": -1,
         "type": "int",
         "description": "+-1, Btor direction in right coord{drho,dteta,dfi}"
       },
       "ipol": {
         "title": "ipol",
-        "value": 1,
+        "value": -1,
         "type": "int",
         "description": "+-1, Bpol direction in right coord{drho,dteta,dfi}"
       }
@@ -291,20 +291,20 @@
       },
       "ntet": {
         "title": "ntet",
-        "value": 10,
+        "value": 21,
         "type": "int",
         "description": "theta grid number"
       },
       "nnz": {
         "title": "nnz",
-        "value": 50,
+        "value": 51,
         "type": "int",
         "description": "iN_phi grid number"
       }
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/Lab/FRTC_v4/ray_tracing/FT2exp_2Apr.dat",
+      "source": "C:/Users/user1/Desktop/Grill3D/spcpz.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
