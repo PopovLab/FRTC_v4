@@ -2,7 +2,7 @@
   "name": "FT2exp_1Apr",
   "setting": {
     "Comments": {
-      "value": "0.001 gap\n\n\n\n\n",
+      "value": "0.1 gap\n\n\n\n\n",
       "title": "Comments",
       "type": "text"
     },
@@ -159,7 +159,7 @@
       },
       "pabs": {
         "title": "pabs",
-        "value": 0.01,
+        "value": 5.0,
         "type": "float",
         "description": "part of remaining power interp. as absorption"
       },
@@ -263,13 +263,13 @@
       },
       "itor": {
         "title": "itor",
-        "value": -1,
+        "value": 1,
         "type": "int",
         "description": "+-1, Btor direction in right coord{drho,dteta,dfi}"
       },
       "ipol": {
         "title": "ipol",
-        "value": -1,
+        "value": 1,
         "type": "int",
         "description": "+-1, Bpol direction in right coord{drho,dteta,dfi}"
       }
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "C:/Users/user1/Desktop/Grill3D/spcpz.dat",
+      "source": "C:/Users/user1/Desktop/Specters/FT2exp_3.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
