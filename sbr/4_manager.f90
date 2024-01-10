@@ -24,7 +24,7 @@ contains
         integer nbad1, nbad2, inz
         integer iw0, ifail, iabsirp, inak0,ib,ie
         integer nmax, i, nb1,nb2
-        real(wp) htet, hr, yn, rin, xmin, rstart
+        real(wp) htet, hr, rin, xmin, rstart
         real(wp) powexit, dltpow,  pow1, pgamma, xm
         real(wp) tetin0, tetin, tet
 
@@ -63,7 +63,7 @@ contains
 
                     call current_trajectory%init(tetin, inz)
 
-                    yn = point%Ntor
+                    !yn = point%Ntor
                     pow = point%power
                     irs = 1
                     iw = iw0
@@ -130,7 +130,7 @@ contains
                     if (powexit.lt.zero) powexit=zero
                     go to 30
                 end if
-                
+
                 if (iout.eq.0) then
                     go to 30
                 end if
