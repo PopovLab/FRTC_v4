@@ -163,7 +163,7 @@ contains
                 current_trajectory%nrefj = current_trajectory%nrefj + nmax
                 powexit = pow
                 nref = nref+nmax
-10              if (iabsorp.lt.0) then
+                if (iabsorp.lt.0) then
                     !-------------------------------------
                     !    encounted problems
                     !-------------------------------------
