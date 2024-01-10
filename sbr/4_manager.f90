@@ -24,9 +24,9 @@ contains
         integer nbad1, nbad2, inz
         integer iw0, ifail, iabsirp, inak0,ib,ie
         integer nmax, i, nb1,nb2
-        real(wp) htet, hr, rin, xmin, rstart
-        real(wp) powexit, dltpow,  pow1, pgamma, xm
-        real(wp) tetin0, tetin, tet
+        real(wp) htet, hr, rin, xmin!, rstart
+        real(wp) powexit, dltpow,  pow1, pgamma !, xm
+        real(wp) tetin0, tetin!, tet
 
         pabs = spectr%max_power*pabs0/1.d2
         print *, 'pabs =', pabs, spectr%max_power, pabs0
