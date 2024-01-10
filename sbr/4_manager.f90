@@ -72,24 +72,17 @@ contains
                     if (ifail.eq.1) then
                         if (ipri.gt.1) write (*,*) 'error: no roots'
                         iabsorp = -1
-                        go to 10
+                        current_trajectory%mbad = 1 ! плохоая траектория
+                        plost= plost+pow
                     else
-                        current_trajectory%rzap   = rzz
-                        current_trajectory%tetzap = tetzz
-                        current_trajectory%xmzap  = xmzz
-                        current_trajectory%yn3zap = yn3
-                        current_trajectory%iznzap = iznzz
-                        current_trajectory%iwzap  = iwzz
-                        current_trajectory%irszap = irszz
-
                         current_trajectory%tetzap = tetin
-                        xmin = current_trajectory%xmzap
+                        current_trajectory%xmzap = xmin
                         current_trajectory%rzap = rin
                         current_trajectory%yn3zap = yn3 
                         !pow = powexit 
                         current_trajectory%irszap = irs 
                         current_trajectory%iwzap = iw
-                        izn = current_trajectory%iznzap
+                        current_trajectory%iznzap = izn
                     end if
 
                 enddo
