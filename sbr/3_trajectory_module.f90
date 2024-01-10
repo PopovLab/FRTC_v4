@@ -227,7 +227,8 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
 20    format('written time slice (seconds) =',f9.3)
     end
 
-    subroutine traj(xm0, tet0, xbeg, nmax, nb1, nb2, pabs) !sav2009
+    !subroutine traj(xm0, tet0, xbeg, nmax, nb1, nb2, pabs) 
+    subroutine traj(self, nmax, nb1, nb2, pabs) 
         use constants, only : tiny1
         use rt_parameters, only: eps, rrange, hdrob, nr, ipri, iw
         use dispersion_module, only: izn
@@ -239,14 +240,16 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         use trajectory_data
 
         implicit none
-        real(wp), intent(in)    :: xm0
-        real(wp), intent(in)    :: tet0
-        real(wp), intent(inout) :: xbeg
+        class(Trajectory), intent(inout) :: self
         real(wp), intent(in)    :: pabs
         integer,  intent(inout) :: nmax        
         integer,  intent(inout) :: nb1, nb2        
         !integer,  intent(in)    :: nomth, nomnz
 
+
+        real(wp) :: xm0
+        real(wp) :: tet0
+        real(wp) :: xbeg
         integer :: nrefl
         integer :: irep
         integer :: irf, irf1
@@ -264,6 +267,11 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         real(wp) :: ynz0, x1, x2, rexi, tetnew
         real(wp) :: xmnew, rnew, xnrnew
         real(wp) :: pg1, pg2, pg3, pg4, pg
+
+
+        xm0 = self%xmzap
+        tet0 = self%tetzap
+        xbeg = self%rzap
 
         eps0=eps
         rrange0=rrange
