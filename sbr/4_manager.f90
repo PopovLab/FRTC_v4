@@ -367,8 +367,8 @@ contains
             end if
         end do
 
-        iout=1
-        powexit=pow
+    iout=1
+    powexit=pow
 
     end    
 
