@@ -156,7 +156,7 @@ contains
                 !-------------------------------------
                 ! call ray tracing
                 !-------------------------------------
-                call traj(xm,tet,rstart,nmax,nb1,nb2,itet,inz, pabs) !sav2009
+                call traj(xm,tet,rstart,nmax,nb1,nb2, pabs) !sav2009
                 eps = eps_const 
                 nbad1 = nbad1+nb1
                 nbad2 = nbad2+nb2

@@ -227,7 +227,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
 20    format('written time slice (seconds) =',f9.3)
     end
 
-    subroutine traj(xm0, tet0, xbeg, nmax, nb1, nb2, nomth, nomnz, pabs) !sav2009
+    subroutine traj(xm0, tet0, xbeg, nmax, nb1, nb2, pabs) !sav2009
         use constants, only : tiny1
         use rt_parameters, only: eps, rrange, hdrob, nr, ipri, iw
         use dispersion_module, only: izn
@@ -245,7 +245,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         real(wp), intent(in)    :: pabs
         integer,  intent(inout) :: nmax        
         integer,  intent(inout) :: nb1, nb2        
-        integer,  intent(in)    :: nomth, nomnz
+        !integer,  intent(in)    :: nomth, nomnz
 
         integer :: nrefl
         integer :: irep
