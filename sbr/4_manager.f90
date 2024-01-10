@@ -109,16 +109,17 @@ contains
             do inz = 1, spectr%size
                 itr = itr+1
                 current_trajectory => trajectories(itr)
-                !ipri          if(ipri.eq.4)  write(23,*)
                 point = spectr%data(inz)
 
                 if (current_trajectory%mbad.ne.0) then
                     plost = plost+point%power
                     go to 31
                 end if
+
                 powexit = point%power
                 dltpow = pabs
                 call dqliter(dltpow,current_trajectory,hr,powexit,iout)
+
                 if (nmax0.eq.0) then
                     pow1 = powexit
                     pgamma = 1.d0-pow1/point%power
@@ -129,19 +130,21 @@ contains
                     if (powexit.lt.zero) powexit=zero
                     go to 30
                 end if
+                
                 if (iout.eq.0) then
                     go to 30
-                else
-                    tetin = current_trajectory%tetzap
-                    xmin = current_trajectory%xmzap
-                    rin = current_trajectory%rzap
-                    yn3 = current_trajectory%yn3zap
-                    pow = powexit 
-                    irs = current_trajectory%irszap
-                    iw =  current_trajectory%iwzap
-                    izn = current_trajectory%iznzap
-                    ! продолжение траектории 
                 end if
+
+                tetin = current_trajectory%tetzap
+                xmin = current_trajectory%xmzap
+                rin = current_trajectory%rzap
+                yn3 = current_trajectory%yn3zap
+                pow = powexit 
+                irs = current_trajectory%irszap
+                iw =  current_trajectory%iwzap
+                izn = current_trajectory%iznzap
+                ! продолжение траектории 
+                
                 !---------------------------------------
                 ! initial parameters for a trajectory
                 !---------------------------------------
