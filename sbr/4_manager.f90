@@ -58,37 +58,16 @@ contains
                 do inz = 1, spectr%size
                     itr = itr+1
                     current_trajectory => trajectories(itr)
-                    !ipri          if(ipri.eq.4)  write(23,*)
                     point = spectr%data(inz)
-
                     call current_trajectory%init(tetin, inz)
-
-                    !yn = point%Ntor
                     pow = point%power
-                    irs = 1
-                    iw = iw0
-                    rin = rini(xmin, tetin, point, ifail)
-                    current_trajectory%rin = rin
-                    if (ifail.eq.1) then
-                        if (ipri.gt.1) write (*,*) 'error: no roots'
-                        iabsorp = -1
-                        current_trajectory%mbad = 1 ! плохоая траектория
+                    call rini(current_trajectory, point, iw0)
+                    
+                    if (current_trajectory%mbad.eq.1) then
                         plost= plost+pow
-                    else
-                        current_trajectory%tetzap = tetin
-                        current_trajectory%xmzap = xmin
-                        current_trajectory%rzap = rin
-                        current_trajectory%yn3zap = yn3 
-                        !pow = powexit 
-                        current_trajectory%irszap = irs 
-                        current_trajectory%iwzap = iw
-                        current_trajectory%iznzap = izn
                     end if
-
                 enddo
-
             enddo
-
         endif
 
         ibad = 0
@@ -202,20 +181,25 @@ contains
     end    
 
 
-    real(wp) function rini(xm, tet, point, ifail) !sav2009
+    !real(wp) function rini(xm, tet, point, ifail) !sav2009
+    subroutine rini(self, point, iw0) 
         use constants, only : zero
-        use rt_parameters, only : inew, nr
+        use rt_parameters, only : inew, nr, iw
         use spectrum_mod, only : SpectrumPoint
-        use dispersion_module, only: ivar, yn3
+        use dispersion_module, only: ivar, yn3, izn
         use dispersion_module, only: disp2_iroot2
         use metrics, only: g22, g33, co, si
         use metrics, only: calculate_metrics
+        use driver_module, only: irs
+        use trajectory_data
         implicit none
-
-        type(SpectrumPoint), intent(in) :: point
-        real(wp), intent(inout)          :: xm
-        real(wp), intent(in)             :: tet 
-        integer, intent(inout)           :: ifail
+        
+        class(Trajectory), intent(inout) :: self
+        type(SpectrumPoint), intent(in)  :: point
+        integer, intent(in)              :: iw0
+        real(wp)  :: xm
+        real(wp)  :: tet 
+        integer   :: ifail
 
         integer :: ntry
         real(wp) :: pa, prt, prm, hr 
@@ -224,9 +208,12 @@ contains
         real(wp),  parameter :: rhostart=1.d0
         integer,   parameter :: ntry_max=5
 
+        irs = 1
+        iw = iw0
         hr = 1.d0/dble(nr+1)
+        tet = self%tetin
+
         ifail = 1
-        rini = zero
         ntry = 0
         pa = rhostart
         do while (ntry.lt.ntry_max.and.pa.ge.2d0*hr)
@@ -242,11 +229,20 @@ contains
             call disp2_iroot2(pa,xm,tet,f1,f2)
             
             if (f1.ge.zero.and.f2.ge.zero) then
-                rini = pa
-                ifail = 0
+                !rini = pa
+                self%rin = pa
+                self%tetzap = tet
+                self%xmzap = xm
+                self%rzap = pa
+                self%yn3zap = yn3 
+                self%irszap = irs 
+                self%iwzap = iw
+                self%iznzap = izn
                 return
             end if
         end do
+        print *, 'error: no roots'
+        self%mbad = 1 ! плохоая траектория
     end      
 
     subroutine dqliter(dltpow, traj, h, powexit, iout) !sav2008
