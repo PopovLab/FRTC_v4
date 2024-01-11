@@ -182,7 +182,7 @@ contains
 
 
     !real(wp) function rini(xm, tet, point, ifail) !sav2009
-    subroutine rini(self, point, iw0) 
+    subroutine rini(traj, point, iw0) 
         use constants, only : zero
         use rt_parameters, only : inew, nr, iw
         use spectrum_mod, only : SpectrumPoint
@@ -194,7 +194,7 @@ contains
         use trajectory_data
         implicit none
         
-        class(Trajectory), intent(inout) :: self
+        class(Trajectory), intent(inout) :: traj
         type(SpectrumPoint), intent(in)  :: point
         integer, intent(in)              :: iw0
         real(wp)  :: xm
@@ -210,7 +210,7 @@ contains
         irs = 1
         iw = iw0
         hr = 1.d0/dble(nr+1)
-        tet = self%tetin
+        tet = traj%tetin
 
         ntry = 0
         pa = rhostart
@@ -228,19 +228,19 @@ contains
             
             if (f1.ge.zero.and.f2.ge.zero) then
                 !rini = pa
-                self%rin = pa
-                self%tetzap = tet
-                self%xmzap = xm
-                self%rzap = pa
-                self%yn3zap = yn3 
-                self%irszap = irs 
-                self%iwzap = iw
-                self%iznzap = izn
+                traj%rin = pa
+                traj%tetzap = tet
+                traj%xmzap = xm
+                traj%rzap = pa
+                traj%yn3zap = yn3 
+                traj%irszap = irs 
+                traj%iwzap = iw
+                traj%iznzap = izn
                 return
             end if
         end do
         print *, 'error: no roots'
-        self%mbad = 1 ! плохоая траектория
+        traj%mbad = 1 ! плохоая траектория
     end      
 
     subroutine dqliter(dltpow, traj, h, powexit, iout) !sav2008
