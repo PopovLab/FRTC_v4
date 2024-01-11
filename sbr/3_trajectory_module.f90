@@ -231,7 +231,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
     subroutine traj(self, nmax, nb1, nb2, pabs) 
         use constants, only : tiny1
         use rt_parameters, only: eps, rrange, hdrob, nr, ipri, iw
-        use dispersion_module, only: izn
+        use dispersion_module, only: izn, yn3
         use dispersion_module, only: extd4, disp2, disp2_iroot3, disp2_ider0
         use driver_module, only: im4, hrad, irs, iabsorp, iznzz, iwzz, irszz, rzz
         use driver_module, only: tetzz, xmzz
@@ -268,10 +268,14 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         real(wp) :: xmnew, rnew, xnrnew
         real(wp) :: pg1, pg2, pg3, pg4, pg
 
-
-        xm0 = self%xmzap
+        ! copy initial parameters for a trajectory
+        xm0  = self%xmzap
         tet0 = self%tetzap
         xbeg = self%rzap
+        yn3  = self%yn3zap
+        irs  = self%irszap
+        iw   = self%iwzap
+        izn  = self%iznzap
 
         eps0=eps
         rrange0=rrange
@@ -318,7 +322,8 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         if(iabsorp.ne.0) then
             if(ipri.gt.2) write (*,*)'in traj() iabsorp=',iabsorp
             nmax=nrefl
-            return
+            !return
+            goto 90
         end if
         if (xend.eq.xbeg) nb1=nb1+1
         !sav2008 20    continue
@@ -338,7 +343,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         rexi=xend
         inak_saved = current_trajectory%size !inak
         call driver4(yy,x1,x2,rexi,hmin, extd4)
-        if(iabsorp.eq.-1) return !failed to turn
+        if(iabsorp.eq.-1) goto 90 !return !failed to turn
 
         tetnew = yy(1)
         xmnew  = yy(2)
@@ -364,7 +369,8 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
                 if (ipri.gt.1) write (*,*) 'error: cant leave 4 eqs'
                 iabsorp=-1
                 print *,'exit ib2.gt.4'
-                return
+                !return
+                goto 90
             end if
             eps=eps/5d0
             rrange=rrange*2d0
@@ -396,6 +402,17 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         iznzz=izn
         iwzz=iw
         irszz=irs
+
+        !---------------------------------------
+        ! remember end point of trajectory
+        !---------------------------------------
+90      self%rzap   = rzz
+        self%tetzap = tetzz
+        self%xmzap  = xmzz
+        self%yn3zap = yn3
+        self%iznzap = iznzz
+        self%iwzap  = iwzz
+        self%irszap = irszz
     end  
 
 

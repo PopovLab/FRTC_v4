@@ -135,22 +135,10 @@ contains
                     go to 30
                 end if
 
-                tetin = current_trajectory%tetzap
-                xmin = current_trajectory%xmzap
-                rin = current_trajectory%rzap
-                yn3 = current_trajectory%yn3zap
                 pow = powexit 
-                irs = current_trajectory%irszap
-                iw =  current_trajectory%iwzap
-                izn = current_trajectory%iznzap
                 ! продолжение траектории 
-                
-                !---------------------------------------
                 ! initial parameters for a trajectory
-                !---------------------------------------
-                !xm = xmin
-                !rstart = rin !sav2008
-                !tet = tetin
+
                 nmax = nmax0
                 iabsorp = 0
                 !-------------------------------------
@@ -186,16 +174,6 @@ contains
                     plost= plost+pow
                     goto 30
                 end if
-                !---------------------------------------
-                ! remember end point of trajectory
-                !---------------------------------------
-                current_trajectory%rzap   = rzz
-                current_trajectory%tetzap = tetzz
-                current_trajectory%xmzap  = xmzz
-                current_trajectory%yn3zap = yn3
-                current_trajectory%iznzap = iznzz
-                current_trajectory%iwzap  = iwzz
-                current_trajectory%irszap = irszz
 
 20              continue
 
