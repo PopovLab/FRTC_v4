@@ -199,7 +199,6 @@ contains
         integer, intent(in)              :: iw0
         real(wp)  :: xm
         real(wp)  :: tet 
-        integer   :: ifail
 
         integer :: ntry
         real(wp) :: pa, prt, prm, hr 
@@ -213,7 +212,6 @@ contains
         hr = 1.d0/dble(nr+1)
         tet = self%tetin
 
-        ifail = 1
         ntry = 0
         pa = rhostart
         do while (ntry.lt.ntry_max.and.pa.ge.2d0*hr)
