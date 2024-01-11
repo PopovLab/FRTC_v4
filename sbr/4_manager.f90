@@ -67,7 +67,7 @@ contains
                     pow = point%power
                     irs = 1
                     iw = iw0
-                    rin = rini(xmin,tetin,point,hr,ifail)
+                    rin = rini(xmin, tetin, point, ifail)
                     current_trajectory%rin = rin
                     if (ifail.eq.1) then
                         if (ipri.gt.1) write (*,*) 'error: no roots'
@@ -202,9 +202,9 @@ contains
     end    
 
 
-    real(wp) function rini(xm, tet, point, hr, ifail) !sav2009
+    real(wp) function rini(xm, tet, point, ifail) !sav2009
         use constants, only : zero
-        use rt_parameters, only : inew
+        use rt_parameters, only : inew, nr
         use spectrum_mod, only : SpectrumPoint
         use dispersion_module, only: ivar, yn3
         use dispersion_module, only: disp2_iroot2
@@ -214,16 +214,17 @@ contains
 
         type(SpectrumPoint), intent(in) :: point
         real(wp), intent(inout)          :: xm
-        real(wp), intent(in)             :: tet,  hr
+        real(wp), intent(in)             :: tet 
         integer, intent(inout)           :: ifail
 
         integer :: ntry
-        real(wp) :: pa, prt, prm
+        real(wp) :: pa, prt, prm, hr 
         real(wp) :: f1,f2
 
         real(wp),  parameter :: rhostart=1.d0
         integer,   parameter :: ntry_max=5
 
+        hr = 1.d0/dble(nr+1)
         ifail = 1
         rini = zero
         ntry = 0
