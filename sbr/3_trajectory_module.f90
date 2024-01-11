@@ -228,7 +228,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
     end
 
     !subroutine traj(xm0, tet0, xbeg, nmax, nb1, nb2, pabs) 
-    subroutine traj(self, nmax, nb1, nb2, pabs) 
+    subroutine tracing(traj, nmax, nb1, nb2, pabs) 
         use constants, only : tiny1
         use rt_parameters, only: eps, rrange, hdrob, nr, ipri, iw
         use dispersion_module, only: izn, yn3
@@ -240,7 +240,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         use trajectory_data
 
         implicit none
-        class(Trajectory), intent(inout) :: self
+        class(Trajectory), intent(inout) :: traj
         real(wp), intent(in)    :: pabs
         integer,  intent(inout) :: nmax        
         integer,  intent(inout) :: nb1, nb2        
@@ -269,13 +269,13 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         real(wp) :: pg1, pg2, pg3, pg4, pg
 
         ! copy initial parameters for a trajectory
-        xm0  = self%xmzap
-        tet0 = self%tetzap
-        xbeg = self%rzap
-        yn3  = self%yn3zap
-        irs  = self%irszap
-        iw   = self%iwzap
-        izn  = self%iznzap
+        xm0  = traj%xmzap
+        tet0 = traj%tetzap
+        xbeg = traj%rzap
+        yn3  = traj%yn3zap
+        irs  = traj%irszap
+        iw   = traj%iwzap
+        izn  = traj%iznzap
 
         eps0=eps
         rrange0=rrange
@@ -406,13 +406,13 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         !---------------------------------------
         ! remember end point of trajectory
         !---------------------------------------
-90      self%rzap   = rzz
-        self%tetzap = tetzz
-        self%xmzap  = xmzz
-        self%yn3zap = yn3
-        self%iznzap = iznzz
-        self%iwzap  = iwzz
-        self%irszap = irszz
+90      traj%rzap   = rzz
+        traj%tetzap = tetzz
+        traj%xmzap  = xmzz
+        traj%yn3zap = yn3
+        traj%iznzap = iznzz
+        traj%iwzap  = iwzz
+        traj%irszap = irszz
     end  
 
 
