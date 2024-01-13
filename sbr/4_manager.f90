@@ -60,12 +60,7 @@ contains
                     current_trajectory => trajectories(itr)
                     point = spectr%data(inz)
                     call current_trajectory%init(tetin, inz)
-                    pow = point%power
                     call rini(current_trajectory, point, iw0)
-                    
-                    if (current_trajectory%mbad.eq.1) then
-                        plost= plost+pow
-                    end if
                 enddo
             enddo
         endif
