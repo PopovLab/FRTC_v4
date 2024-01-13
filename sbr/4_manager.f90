@@ -123,7 +123,7 @@ contains
                 !-------------------------------------
                 ! call ray tracing
                 !-------------------------------------
-                call tracing(current_trajectory,nmax,nb1,nb2, pabs) !sav2009
+                call tracing(current_trajectory, nmax, nb1, nb2, pabs)
                 eps = eps_const 
                 nbad1 = nbad1+nb1
                 nbad2 = nbad2+nb2
