@@ -13,6 +13,7 @@ exclude: typdsp_time.f
 exclude: lhcd2017.f
 exclude: debug.f
 exclude: saveprofiles.f
+page_dir: pages
 print_creation_date: true
 creation_date: %Y-%m-%d %H:%M %z
 ---
