@@ -1,7 +1,9 @@
-title: Notes
+title: Глава 1
 author: Эстеркин
 copy_subdir: ../images
-ordered_subpage: introduction.md
+ordered_subpage: chapter_1_1.md
+ordered_subpage: chapter_1_2.md
+ordered_subpage: chapter_1_3.md
 ---
 
 СОДЕРЖАНИЕ 
