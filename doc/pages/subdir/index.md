@@ -1,8 +1,8 @@
-title: Notes
+title: Notes2
 author: Эстеркин
 copy_subdir: ../images
-ordered_subpage: introduction.md
-ordered_subpage: chapter_01.md
+ordered_subpage: subpage2.md
+ordered_subpage: subpage1.md
 ---
 
 СОДЕРЖАНИЕ 
