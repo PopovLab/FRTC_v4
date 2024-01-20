@@ -15,6 +15,7 @@ title: Лучевые траектории нижнегибридных волн
 \begin{equation} 
 \frac{d \vec{r}}{d t} = - \frac{\partial H / \partial \vec{k}}{\partial H / \partial \omega}, \quad
 \frac{d \vec{k}}{d t} = \frac{\partial H / \partial \vec{r}}{\partial H / \partial \omega}
+\tag{1.1}
 \end{equation}
 
 где \(Н\) - левая часть дисперсионного уравнения. Уравнения (1.1) определяют форму луча и изменение вдоль него
@@ -31,12 +32,14 @@ title: Лучевые траектории нижнегибридных волн
 Для того, чтобы записать уравнения (1.1) для проекций входящих в них векторов необходимо задать систему координат. 
 Мы выберем систему \((\rho, \theta, \varphi)\), связанную с магнитными поверхностями. При этом магнитные поверхности задаются уравнением \(\rho = const\), \(\theta\) - здесь полоидальный, а \(\varphi\) - тороидальный угол. Такая система координат была введена в [75] и позволяет удобно задавать форму магнитных поверхностей через широко используемые характеристики-
 шафрановский сдвиг \(\Delta\) , эллиптичность \(\lambda\). и треугольность \(\gamma\). Ее связь с обычней цилиндрической системой координат \( (r, \varphi, z) \) дается выражениями:
-
-\begin{align*}
-&r = R_0 - \Delta(\rho) + \rho cos(\theta) - \gamma(\rho) sin^2(\theta) \\
-&\varphi = \varphi	 \\
-&z = \lambda(\rho) \rho sin(\theta) 
-\end{align*}
+\begin{equation}
+    \begin{aligned} 
+        &r = R_0 - \Delta(\rho) + \rho cos(\theta) - \gamma(\rho) sin^2(\theta) \\
+        &\varphi = \varphi	 \\
+        &z = \lambda(\rho) \rho sin(\theta) 
+    \end{aligned}
+    \tag{1.2}
+\end{equation}
 
 где \(R_0\) - радиус магнитной оси. Функции \( \Delta(\rho),\gamma(\rho) и \lambda(\rho) \) определяют широкий класс магнитных поверхностей и с достаточной точностью позволяют отыскать практически любую равновесную конфигурацию в токамаке.
 
@@ -45,12 +48,13 @@ title: Лучевые траектории нижнегибридных волн
 Дисперсионное уравнение в холодной плазме имеет вид [43]:
 
 \begin{equation} 
-H \equiv \varepsilon {N_\perp}^4 
-- [(\varepsilon + \eta)(\varepsilon - {N_\parallel}^2) - g^2] {N_\perp}^2
-+  \eta [(\varepsilon - {N_\parallel}^2)^2 - g^2] = 0
+    H \equiv \varepsilon {N_\perp}^4 
+    - [(\varepsilon + \eta)(\varepsilon - {N_\parallel}^2) - g^2] {N_\perp}^2
+    +  \eta [(\varepsilon - {N_\parallel}^2)^2 - g^2] = 0
+    \tag{1.3}
 \end{equation}
 
-Здесь \(N_\parallel=с{k_\parallel}/\omega \), \(N_\parallel=с{k_\perp}/\omega \), 
+Здесь \(N_\parallel=с{k_\parallel}/\omega \), \(N_\perp=с{k_\perp}/\omega \), 
 где \(k_\perp\) - составляющая волнового вектора, перпендикулярная магнитному полю, 
 \( \varepsilon = K_{x x} = K_{y y}\),	\( g = i K_{xy} = i K_{yx}\), \( \eta = K_{zz}\) - компоненты тензора диэлектрической
 проницаемости \(\hat{К}\).
@@ -65,17 +69,21 @@ H \equiv \varepsilon {N_\perp}^4
 \(n = n(\rho)\). Что касается магнитного поля и физических компонент показателя преломления \(N_\parallel\) и \(N_\perp\) то для того, чтобы выразить их в выбранной системе координат нужно ввести метрический тензор  \(\hat{G}\). 
 Используя выражения (1.3) имеем для его элементов:
 
-\begin{align*}
-&g_{11} = (-\Delta' + \cos{\theta} - \gamma' \sin^2 \theta)^2 + (\lambda' \rho + \lambda)^2 \sin^2 \theta \\
-&g_{22} = (\rho + 2 \gamma \cos{\theta})^2 \sin^2 \theta + \lambda^2 \rho^2 \cos^2 \theta \\
-&g_{33} = (R_0 - \Delta + \rho \cos \theta - \gamma \sin^2 \theta)^2 \\
-&g_{12} = \lambda \rho (\lambda' \rho + \lambda) \sin \theta \cos \theta - (\Delta' + \cos \theta - \gamma' \sin^2 \theta)(\rho + 2 \gamma \cos \theta) \sin \theta
-\end{align*}
+\begin{equation}
+    \begin{aligned} 
+        &g_{11} = (-\Delta' + \cos{\theta} - \gamma' \sin^2 \theta)^2 + (\lambda' \rho + \lambda)^2 \sin^2 \theta \\
+        &g_{22} = (\rho + 2 \gamma \cos{\theta})^2 \sin^2 \theta + \lambda^2 \rho^2 \cos^2 \theta \\
+        &g_{33} = (R_0 - \Delta + \rho \cos \theta - \gamma \sin^2 \theta)^2 \\
+        &g_{12} = \lambda \rho (\lambda' \rho + \lambda) \sin \theta \cos \theta - (\Delta' + \cos \theta - \gamma' \sin^2 \theta)(\rho + 2 \gamma \cos \theta) \sin \theta
+    \end{aligned}
+    \tag{1.4}
+\end{equation}
 \(g_{i3}=0\) и \(g_{3i}=0\) при \(i\neq3\). 
 Записывая уравнение \(div \vec{B}=0 \) в криволинейной системе координат получим 
 для контрвариантных компонент магнитного поля \(\vec{В}\):
 \begin{equation}
-В^1 = 0,\quad В^2 = \Phi'(\rho)/2 \pi \sqrt g, \quad В^3 = \Psi'(\rho)/2 \pi \sqrt g
+    В^1 = 0,\quad В^2 = \Phi'(\rho)/2 \pi \sqrt g, \quad В^3 = \Psi'(\rho)/2 \pi \sqrt g
+    \tag{1.5}
 \end{equation}
 где \(g = det G \), 
 \(\Phi\) и \(\Psi\) - соответственно полоидальный и тороидальный магнитный потоки.
@@ -90,7 +98,7 @@ H \equiv \varepsilon {N_\perp}^4
 
 \( k_{\parallel} = \vec{k} \vec{B}/ |\vec{B}| = (k_1 B^1 + k_2 B^2 + k_3 B^3)/|B|\), что учитывая (1.5) дает
 
-\(k_{\parallel} = k_1 \frac{\sin \alpha}{\sqrt g_{22}} + k_2 \cos \alpha / \sqrt g_{33} \)	(1.6)
+\[k_{\parallel} = k_1 \frac{\sin \alpha}{\sqrt g_{22}} + k_2 \cos \alpha / \sqrt g_{33}  \tag{1.6}\]
 
 где \(\alpha\) - угол между \(B_\varphi\)  и полным магнитным полем В. 
 Тороидальная компонента магнитного поля \(B_\varphi \) определяется очевидным выражением 
@@ -101,7 +109,7 @@ H \equiv \varepsilon {N_\perp}^4
 Наконец, к может быть найдено о помощью тождества \(k^2 = \vec{k} \vec{k} = k^2_\parallel + k^2_\perp\).
 Записывая векторное произведение в римановом пространстве, задаваемом тензором	\(g_{ik}\) получим
 
-\[ k^2_{\perp} = \sum_{i,k} g^{ik} k_1 k_2  - k^2_\parallel ,(1.7)\]
+\[ k^2_{\perp} = \sum_{i,k} g^{ik} k_1 k_2  - k^2_\parallel , \tag{1.7}\]
 
 где \(g^{ik}\) - контрвариантный метрический тензор. 
 Его элементы определяются выражением: \(g^{ik} = \partial \ln g / \partial g_{ik}\).
@@ -109,13 +117,16 @@ H \equiv \varepsilon {N_\perp}^4
 Разделив уравнения (1.1) на групповую скорость \(v_g = \partial \omega / \partial \vec{k}\) 
 и переходя таким образом от физически неинтересного в данной задаче времени	к длине траектории s получим окончательно:
 
-\begin{equation} 
-\frac{d\rho}{ds} = - \frac{\partial H / \partial k_1} {|\partial H / \partial \vec{k}|} \quad
-\frac{dk_1}{ds} = \frac{\partial H / \partial \rho}{|\partial H / \partial \vec{k}|}  \\
-\frac{d\theta}{ds} = - \frac{\partial H / \partial k_2} {|\partial H / \partial \vec{k}|} \quad
-\frac{dk_2}{ds} = \frac{\partial H / \partial \theta}{|\partial H / \partial \vec{k}|}  \\
-\frac{d\varphi}{ds} = - \frac{\partial H / \partial k_3} {|\partial H / \partial \vec{k}|} \quad
-\frac{dk_3}{ds} = \frac{\partial H / \partial \varphi}{|\partial H / \partial \vec{k}|}  \\
+\begin{equation}
+    \begin{aligned} 
+        \frac{d\rho}{ds} = - \frac{\partial H / \partial k_1} {|\partial H / \partial \vec{k}|} \quad
+        \frac{dk_1}{ds} = \frac{\partial H / \partial \rho}{|\partial H / \partial \vec{k}|}  \\
+        \frac{d\theta}{ds} = - \frac{\partial H / \partial k_2} {|\partial H / \partial \vec{k}|} \quad
+        \frac{dk_2}{ds} = \frac{\partial H / \partial \theta}{|\partial H / \partial \vec{k}|}  \\
+        \frac{d\varphi}{ds} = - \frac{\partial H / \partial k_3} {|\partial H / \partial \vec{k}|} \quad
+        \frac{dk_3}{ds} = \frac{\partial H / \partial \varphi}{|\partial H / \partial \vec{k}|}  \\
+    \end{aligned}
+    \tag{1.8}
 \end{equation}
 
 где \(H\) должно быть выражено через канонические импульсы с помощью уравнений (1.6),	(1.7). 
