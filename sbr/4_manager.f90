@@ -286,8 +286,6 @@ contains
         use current, only: dfind
         use plasma, only: vperp
         use iterator_mod, only: psum4
-        !use driver_module, only: jrad, iww, length      
-        !use driver_module, only: pow, vel, perpn, dland, dcoll, dalf
         use driver_module, only: pow
         use trajectory_data
         implicit none
@@ -296,7 +294,6 @@ contains
         real(wp), intent(in)   :: dltpow
         real(wp), intent(in)   :: h
         real(wp), intent(out)  :: powexit
-        !integer, intent(inout) :: ib, ie
         integer, intent(inout) :: iout
 
         type(TrajectoryPoint) :: tp
@@ -315,7 +312,6 @@ contains
         pdecv=zero
         pintld=zero
         pintal=zero
-  10    continue
         iout=0
         do i = 1, traj%size
             !-----------------------------------
@@ -380,21 +376,10 @@ contains
                 return
             end if
         end do
-        jchek= 0 !jrad(ie+1) !!!!!
-        !c-------------------------------------------
-        !c  check whether trajectory has continuation
-        !c---------------------------------------------
-        if(jchek.eq.0) then
-            iout=1
-            powexit=pow
-            return
-        else
-            print *,'dqliter stop'
-            stop
-            !ib=idnint(dland(ie+1))
-            !ie=idnint(dcoll(ie+1))
-            goto 10
-        end if
+
+        iout=1
+        powexit=pow
+
     end    
 
 end module manager_mod
