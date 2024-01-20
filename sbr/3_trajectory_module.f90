@@ -227,10 +227,11 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
 20    format('written time slice (seconds) =',f9.3)
     end
 
-    subroutine traj(xm0, tet0, xbeg, nmax, nb1, nb2, nomth, nomnz, pabs) !sav2009
+    !subroutine traj(xm0, tet0, xbeg, nmax, nb1, nb2, pabs) 
+    subroutine tracing(traj, nmax, nb1, nb2, pabs) 
         use constants, only : tiny1
         use rt_parameters, only: eps, rrange, hdrob, nr, ipri, iw
-        use dispersion_module, only: izn
+        use dispersion_module, only: izn, yn3
         use dispersion_module, only: extd4, disp2, disp2_iroot3, disp2_ider0
         use driver_module, only: im4, hrad, irs, iabsorp, iznzz, iwzz, irszz, rzz
         use driver_module, only: tetzz, xmzz
@@ -239,14 +240,16 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         use trajectory_data
 
         implicit none
-        real(wp), intent(in)    :: xm0
-        real(wp), intent(in)    :: tet0
-        real(wp), intent(inout) :: xbeg
+        class(Trajectory), intent(inout) :: traj
         real(wp), intent(in)    :: pabs
         integer,  intent(inout) :: nmax        
         integer,  intent(inout) :: nb1, nb2        
-        integer,  intent(in)    :: nomth, nomnz
+        !integer,  intent(in)    :: nomth, nomnz
 
+
+        real(wp) :: xm0
+        real(wp) :: tet0
+        real(wp) :: xbeg
         integer :: nrefl
         integer :: irep
         integer :: irf, irf1
@@ -264,6 +267,15 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         real(wp) :: ynz0, x1, x2, rexi, tetnew
         real(wp) :: xmnew, rnew, xnrnew
         real(wp) :: pg1, pg2, pg3, pg4, pg
+
+        ! copy initial parameters for a trajectory
+        xm0  = traj%xmzap
+        tet0 = traj%tetzap
+        xbeg = traj%rzap
+        yn3  = traj%yn3zap
+        irs  = traj%irszap
+        iw   = traj%iwzap
+        izn  = traj%iznzap
 
         eps0=eps
         rrange0=rrange
@@ -310,7 +322,8 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         if(iabsorp.ne.0) then
             if(ipri.gt.2) write (*,*)'in traj() iabsorp=',iabsorp
             nmax=nrefl
-            return
+            !return
+            goto 90
         end if
         if (xend.eq.xbeg) nb1=nb1+1
         !sav2008 20    continue
@@ -330,7 +343,7 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         rexi=xend
         inak_saved = current_trajectory%size !inak
         call driver4(yy,x1,x2,rexi,hmin, extd4)
-        if(iabsorp.eq.-1) return !failed to turn
+        if(iabsorp.eq.-1) goto 90 !return !failed to turn
 
         tetnew = yy(1)
         xmnew  = yy(2)
@@ -356,7 +369,8 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
                 if (ipri.gt.1) write (*,*) 'error: cant leave 4 eqs'
                 iabsorp=-1
                 print *,'exit ib2.gt.4'
-                return
+                !return
+                goto 90
             end if
             eps=eps/5d0
             rrange=rrange*2d0
@@ -388,6 +402,17 @@ subroutine view(tview, ispectr,nnz,ntet) !sav2008
         iznzz=izn
         iwzz=iw
         irszz=irs
+
+        !---------------------------------------
+        ! remember end point of trajectory
+        !---------------------------------------
+90      traj%rzap   = rzz
+        traj%tetzap = tetzz
+        traj%xmzap  = xmzz
+        traj%yn3zap = yn3
+        traj%iznzap = iznzz
+        traj%iwzap  = iwzz
+        traj%irszap = irszz
     end  
 
 

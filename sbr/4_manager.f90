@@ -19,29 +19,23 @@ contains
         type (Spectrum) spectr
         type (SpectrumPoint) point
         real(wp) pabs
-        !integer iznzap(mpnt),iwzap(mpnt),irszap(mpnt)
-        !real(wp) rzap(mpnt),tetzap(mpnt),xmzap(mpnt),yn3zap(mpnt)
         integer ntet, iout, itr,  nnj,  n_it
         integer maxref, iterat, nmax0, ibad, itet, nref
         integer nbad1, nbad2, inz
         integer iw0, ifail, iabsirp, inak0,ib,ie
         integer nmax, i, nb1,nb2
-        !integer iznzz, iwzz, irszz
-        real(wp) htet, hr, yn, rin, xmin, rstart
-        real(wp) powexit, dltpow,  pow1, pgamma, xm
-        real(wp) tetin0, tetin, tet
+        real(wp) htet, hr, rin, xmin!, rstart
+        real(wp) powexit, dltpow,  pow1, pgamma !, xm
+        real(wp) tetin0, tetin!, tet
 
         pabs = spectr%max_power*pabs0/1.d2
         print *, 'pabs =', pabs, spectr%max_power, pabs0
-        !lenstor = length
         htet = zero
         hr = 1.d0/dble(nr+1) !sav2008
         if (ntet.ne.1) htet = (tet2-tet1)/(ntet-1)
         irs = 1
         iout = 0
-        !mbeg(1) = 1
         itr = 0
-        !inak = 0
         nnj = 0
         do n_it = 0,3
             nnj = nnj+nmaxm(n_it+1)
@@ -53,7 +47,26 @@ contains
             write(*,1001) iterat+1
             write(*,1002)
         end if
+
+        if(iterat.eq.0) then
+            !-----------------------------------------
+            !    find initial radius for a trajectory
+            !    on the 1th iteration
+            !-----------------------------------------
+            do itet = 1,ntet
+                tetin = tet1+htet*(itet-1)
+                do inz = 1, spectr%size
+                    itr = itr+1
+                    current_trajectory => trajectories(itr)
+                    point = spectr%data(inz)
+                    call current_trajectory%init(tetin, inz)
+                    call rini(current_trajectory, point, iw0)
+                enddo
+            enddo
+        endif
+
         ibad = 0
+        itr = 0 
         !--------------------------------------
         ! begin outer loop on teta
         !--------------------------------------
@@ -70,94 +83,52 @@ contains
             do inz = 1, spectr%size
                 itr = itr+1
                 current_trajectory => trajectories(itr)
-                !ipri          if(ipri.eq.4)  write(23,*)
                 point = spectr%data(inz)
-                if(iterat.eq.0) then
-                    !-----------------------------------------
-                    !    find initial radius for a trajectory
-                    !    on the 1th iteration
-                    !-----------------------------------------
-                    call current_trajectory%init(tetin, inz)
 
-                    yn = point%Ntor
-                    pow = point%power
-                    !yn=ynzm(inz) !sav2008, yn is introduced
-                    !pow=pm(inz)
-                    irs = 1
-                    iw = iw0
-                    rin = rini(xmin,tetin,point,hr,ifail)
-                    current_trajectory%rin = rin
-                    if (ifail.eq.1) then
-                        if (ipri.gt.1) write (*,*) 'error: no roots'
-                        iabsorp = -1
-                        !inak0 = inak
-                        go to 10
-                    end if
-
-                else
-                    if (current_trajectory%mbad.ne.0) then
-                        plost = plost+point%power
-                        go to 31
-                    end if
-                    !ib = mbeg(itr)
-                    !ie = mend(itr)
-                    powexit = point%power
-                    dltpow = pabs
-                    call dqliter(dltpow,current_trajectory,hr,powexit,iout)
-                    if (nmax0.eq.0) then
-                        !ib = mbeg(itr)
-                        !ie = mend(itr)
-                        pow1 = powexit
-                        pgamma = 1.d0-pow1/point%power
-                        powexit = pow1/pgamma
-                        dltpow = powexit-pow1+pabs
-                        call dqliter(dltpow,current_trajectory,hr,powexit,iout)
-                        powexit = powexit-dltpow+pabs
-                        if (powexit.lt.zero) powexit=zero
-                        go to 30
-                    end if
-	                if (iout.eq.0) then
-                        go to 30
-                    else
-                        tetin = current_trajectory%tetzap
-                        xmin = current_trajectory%xmzap
-                        rin = current_trajectory%rzap
-                        yn3 = current_trajectory%yn3zap
-                        pow = powexit 
-                        irs = current_trajectory%irszap
-                        iw =  current_trajectory%iwzap
-                        izn = current_trajectory%iznzap
-                        !jrad(ie+1) = 1
-                        !dland(ie+1) = lfree
-                        !inak = lfree-1
-                        !call current_trajectory%reset(0)
-                        ! продолжение траектории !! ресет не нужен 
-                    end if
+                if (current_trajectory%mbad.ne.0) then
+                    plost = plost+point%power
+                    go to 31
                 end if
-                !---------------------------------------
+
+                powexit = point%power
+                dltpow = pabs
+                call dqliter(dltpow,current_trajectory,hr,powexit,iout)
+
+                if (nmax0.eq.0) then
+                    pow1 = powexit
+                    pgamma = 1.d0-pow1/point%power
+                    powexit = pow1/pgamma
+                    dltpow = powexit-pow1+pabs
+                    call dqliter(dltpow,current_trajectory,hr,powexit,iout)
+                    powexit = powexit-dltpow+pabs
+                    if (powexit.lt.zero) powexit=zero
+                    go to 30
+                end if
+
+                if (iout.eq.0) then
+                    go to 30
+                end if
+
+                pow = powexit 
+                ! продолжение траектории 
                 ! initial parameters for a trajectory
-                !---------------------------------------
-                xm = xmin
-                rstart = rin !sav2008
-                tet = tetin
+
                 nmax = nmax0
                 iabsorp = 0
-                !inak0 = inak
                 !-------------------------------------
                 ! call ray tracing
                 !-------------------------------------
-                call traj(xm,tet,rstart,nmax,nb1,nb2,itet,inz, pabs) !sav2009
+                call tracing(current_trajectory, nmax, nb1, nb2, pabs)
                 eps = eps_const 
                 nbad1 = nbad1+nb1
                 nbad2 = nbad2+nb2
                 current_trajectory%nrefj = current_trajectory%nrefj + nmax
                 powexit = pow
                 nref = nref+nmax
-10              if (iabsorp.lt.0) then
+                if (iabsorp.lt.0) then
                     !-------------------------------------
                     !    encounted problems
                     !-------------------------------------
-                    !if (inak.eq.lenstor-1) then
                     if (current_trajectory%size.eq.max_size-1) then
                         write (*,*) 'fix maximal length'
                         nmax0 = 0
@@ -175,38 +146,13 @@ contains
                     end if
                     current_trajectory%mbad = 1 ! плохоая траектория
                     plost= plost+pow
-                    !inak = inak0
-                    !mend(itr) = inak-1
                     goto 30
                 end if
-                !---------------------------------------
-                ! remember end point of trajectory
-                !---------------------------------------
-                current_trajectory%rzap   = rzz
-                current_trajectory%tetzap = tetzz
-                current_trajectory%xmzap  = xmzz
-                current_trajectory%yn3zap = yn3
-                current_trajectory%iznzap = iznzz
-                current_trajectory%iwzap  = iwzz
-                current_trajectory%irszap = irszz
-                if (iterat.eq.0) then
-                    !if (itr.gt.1) mbeg(itr) = mend(itr-1)+2
-                    !mend(itr) = inak
-                    !jrad(mend(itr)+1) = 0
-                    !lfree = mend(itr)+2
-                    !inak = lfree-1
-                end if
+
 20              continue
-                if(iout.ne.0) then
-                    !print *,'**************'
-                    !dcoll(ie+1) = inak
-                    !jrad(inak+1) = 0
-                    !lfree = inak+2
-                end if
+
                 if(current_trajectory%nrefj.gt.maxref.and.pow.gt.pabs) then !forced absorp
                     if(pow.ge.point%power) go to 30 !sav2008
-                    !ib = mbeg(itr)
-                    !ie = mend(itr)
                     pow1 = pow
                     pgamma = 1.d0-pow1/point%power
                     powexit = pow1/pgamma
@@ -230,30 +176,37 @@ contains
     end    
 
 
-    real(wp) function rini(xm, tet, point, hr, ifail) !sav2009
+    !real(wp) function rini(xm, tet, point, ifail) !sav2009
+    subroutine rini(traj, point, iw0) 
         use constants, only : zero
-        use rt_parameters, only : inew
+        use rt_parameters, only : inew, nr, iw
         use spectrum_mod, only : SpectrumPoint
-        use dispersion_module, only: ivar, yn3
+        use dispersion_module, only: ivar, yn3, izn
         use dispersion_module, only: disp2_iroot2
         use metrics, only: g22, g33, co, si
         use metrics, only: calculate_metrics
+        use driver_module, only: irs
+        use trajectory_data
         implicit none
-
-        type(SpectrumPoint), intent(in) :: point
-        real(wp), intent(inout)          :: xm
-        real(wp), intent(in)             :: tet,  hr
-        integer, intent(inout)           :: ifail
+        
+        class(Trajectory), intent(inout) :: traj
+        type(SpectrumPoint), intent(in)  :: point
+        integer, intent(in)              :: iw0
+        real(wp)  :: xm
+        real(wp)  :: tet 
 
         integer :: ntry
-        real(wp) :: pa, prt, prm
+        real(wp) :: pa, prt, prm, hr 
         real(wp) :: f1,f2
 
         real(wp),  parameter :: rhostart=1.d0
         integer,   parameter :: ntry_max=5
 
-        ifail = 1
-        rini = zero
+        irs = 1
+        iw = iw0
+        hr = 1.d0/dble(nr+1)
+        tet = traj%tetin
+
         ntry = 0
         pa = rhostart
         do while (ntry.lt.ntry_max.and.pa.ge.2d0*hr)
@@ -269,11 +222,20 @@ contains
             call disp2_iroot2(pa,xm,tet,f1,f2)
             
             if (f1.ge.zero.and.f2.ge.zero) then
-                rini = pa
-                ifail = 0
+                !rini = pa
+                traj%rin = pa
+                traj%tetzap = tet
+                traj%xmzap = xm
+                traj%rzap = pa
+                traj%yn3zap = yn3 
+                traj%irszap = irs 
+                traj%iwzap = iw
+                traj%iznzap = izn
                 return
             end if
         end do
+        print *, 'error: no roots'
+        traj%mbad = 1 ! плохоая траектория
     end      
 
     subroutine dqliter(dltpow, traj, h, powexit, iout) !sav2008
@@ -377,8 +339,8 @@ contains
             end if
         end do
 
-        iout=1
-        powexit=pow
+    iout=1
+    powexit=pow
 
     end    
 

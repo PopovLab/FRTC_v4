@@ -8,7 +8,7 @@ TSTART = 0.11;
 TEND = 0.3;
 TINIT=0.178;
 TSCALE = 0.032;
-TPAUSE = 0.2;
+!TPAUSE = 0.2;
 
      
 !BTOR=1.0d0;
