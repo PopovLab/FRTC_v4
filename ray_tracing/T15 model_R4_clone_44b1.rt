@@ -1,8 +1,8 @@
 {
-  "name": "T15 model_R4",
+  "name": "T15 model_R4_clone_44b1",
   "setting": {
     "Comments": {
-      "value": "grig 19012024 R4",
+      "value": "grig 19012024 R4\n",
       "title": "Comments",
       "type": "text"
     },
