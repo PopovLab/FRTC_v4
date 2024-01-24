@@ -65,7 +65,7 @@ subroutine write_v_array(v, a, time, array_name)
             gv = glue_v_axis(v(:,i))
             write (iu, '(2012(ES22.14))') gv(:)
             deallocate(gv)
-            ga = glue_arrays(a(:,i,1), a(:,i,2))
+            ga = glue_arrays(a(:,i,2), a(:,i,1)) ! negative - positive
             write (iu, '(2012(ES22.14))') ga(:)
             deallocate(ga)
         end do
