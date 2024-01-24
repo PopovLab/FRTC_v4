@@ -58,6 +58,7 @@ contains
 
     subroutine memorize_trajectory_point(vz, j, ro, powccc, driver)
         !!  memorize trajectory point
+        use rt_parameters, only : nr
         use plasma, only: fvt
         use decrements, only: cf1, cf2, cf3, cf6
         use decrements, only: icf1, icf2
@@ -82,7 +83,7 @@ contains
         tp%perpn = cf1 !refr
         tp%poloidn = cf6 !npoloid
         tp%tetai = cf2 ! tet_i
-        radth=dble(j)/dble(31)
+        radth=dble(j)/dble(nr) !!! 
         tp%vthc = 3.d10/fvt(radth)
         tp%iww = icf1 ! было ifast 
         tp%izz = icf2 ! было idir
