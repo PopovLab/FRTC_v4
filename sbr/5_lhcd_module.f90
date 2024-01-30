@@ -33,11 +33,28 @@ contains
         use driven_current_module, only : zv1, zv2
         use decrements, only: kzero
         use source_new_mod
-        implicit real*8 (a-h,o-z)
+        implicit none
         type(Spectrum) spectr
         real*8 outpe,pe_out 
         dimension outpe(*)
-        dimension galfa(50,100),vpmin(100),vcva(100), &
+
+        real(wp) :: hr, r,  pn, fnr, fnrr
+        real(wp) :: vt, vto, wpq, whe, v
+        real(wp) :: u, u1, e1, e2, e3, tmp
+        real(wp) :: cn1, avedens
+        real(wp) :: anb, fuspow, o_da
+        real(wp) :: dvperp, ddens, dn1, dn2
+        real(wp) :: tt, cn2, vmax, v1, v2
+        real(wp) :: tdens, dfout
+        real(wp) :: anb0, aratio, sssour
+        real(wp) :: dland, dcoll, perpn, dalf
+        real(wp) :: vel, tatai, xnpar
+        real(wp) :: cur, q_rest, q_abs, q_cond
+        real(wp) :: psum1, psum2, pchg, pchg1, pchg2
+        real(wp) :: dpw1, dpw2, cppl, cppc, cppa, cppf
+        real(wp) :: oi, ol, oc, oa, of, tok
+        real(wp) :: zff, cnyfoc, dconst, ddout, fout
+        real(wp) :: galfa(50,100),vpmin(100),vcva(100), &
             pd2(100),pd2a(100),pd2b(100),pdprev1(100),pdprev2(100), &
             source(100),sour(100), &
             rxx(102),pwe(102),wrk(102)
