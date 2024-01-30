@@ -47,17 +47,16 @@ contains
         real(wp) :: tt, cn2, vmax, v1, v2
         real(wp) :: tdens, dfout
         real(wp) :: anb0, aratio, sssour
-        real(wp) :: dland, dcoll, perpn, dalf
-        real(wp) :: vel, tatai, xnpar
-        real(wp) :: cur, q_rest, q_abs, q_cond
+        real(wp) :: q_rest, q_abs, q_cond
         real(wp) :: psum1, psum2, pchg, pchg1, pchg2
         real(wp) :: dpw1, dpw2, cppl, cppc, cppa, cppf
-        real(wp) :: oi, ol, oc, oa, of, tok
+        real(wp) :: oi, ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, ddout, fout
-        real(wp) :: galfa(50,100),vpmin(100),vcva(100), &
-            pd2(100),pd2a(100),pd2b(100),pdprev1(100),pdprev2(100), &
-            source(100),sour(100), &
-            rxx(102),pwe(102),wrk(102)
+        !real(wp) :: pd2(100),pd2a(100),pd2b(100)
+        real(wp) :: galfa(50,100), vpmin(100), vcva(100)
+        real(wp) :: pdprev1(100), pdprev2(100)
+        real(wp) :: source(100), sour(100)
+        real(wp) :: rxx(102),pwe(102),wrk(102)
         !dimension vmid(100),vz1(100),vz2(100),ibeg(100),iend(100)
         !common /a0a4/ plost,pnab
         !common /bcef/ ynz,ynpopq
@@ -85,7 +84,7 @@ contains
         integer ispectr
         integer :: nrr, i, j, k  
         integer :: klo,khi,ierr
-        integer :: jrad, iww, iw0, izz
+        integer :: iww, iw0, izz
 
         plaun = spectr%input_power
 
@@ -250,28 +249,30 @@ contains
         !c------------------------------------
         !c set initial values of arrays
         !c------------------------------------
-        dland=zero
-        dcoll=zero
-        perpn=zero
-        dalf=zero
-        vel=zero
-        jrad=0
+        !dland=zero
+        !dcoll=zero
+        !perpn=zero
+        !dalf=zero
+        !vel=zero
+        !jrad=0
         iww=0
-        tatai=zero
-        xnpar=zero
+        !tatai=zero
+        !xnpar=zero
         izz=zero
-        !
+        ! 
         pdl=zero
         pdc=zero
         pda=zero
         pdfast=zero
         pdprev1=zero
         pdprev2=zero
-        tok=zero
-        cur=zero
-        pd2=zero
-        pd2a=zero
-        pd2b=zero
+
+        !tok=zero
+        !cur=zero
+        !pd2=zero
+        !pd2a=zero
+        !pd2b=zero
+
         dql=zero
         dq1=zero
         dq2=zero
