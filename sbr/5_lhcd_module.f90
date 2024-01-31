@@ -33,6 +33,7 @@ contains
         use driven_current_module, only : zv1, zv2
         use decrements, only: kzero
         use source_new_mod
+        
         implicit none
         type(Spectrum) spectr
         real*8 outpe,pe_out 
@@ -56,7 +57,7 @@ contains
         real(wp) :: galfa(50,100), vpmin(100), vcva(100)
         real(wp) :: pdprev1(100), pdprev2(100)
         real(wp) :: source(100), sour(100)
-        real(wp) :: rxx(102),pwe(102),wrk(102)
+
         !dimension vmid(100),vz1(100),vz2(100),ibeg(100),iend(100)
         !common /a0a4/ plost,pnab
         !common /bcef/ ynz,ynpopq
@@ -82,7 +83,7 @@ contains
         real(wp)    :: dijk(101,100,2), vrjnew(101,100,2)
         !встречает только один раз common/t01/dijk(101,100,2), vrjnew(101,100,2), iptnew
         integer ispectr
-        integer :: nrr, i, j, k  
+        integer :: i, j, k  
         integer :: klo,khi,ierr
         integer :: iww, iw0, izz
 
@@ -94,12 +95,6 @@ contains
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         hr = 1.d0/dble(nr+1)
         iw0=iw
-        nrr=nr+2
-        rxx(1)=zero
-        rxx(nrr)=one
-        do j=1,nr
-            rxx(j+1)=hr*dble(j)
-        end do
     
         call find_volums_and_surfaces
 
@@ -312,10 +307,10 @@ contains
             pdc(j)=pdc(j)*xwtt
             pda(j)=pda(j)*xwtt
             pdfast(j)=pdfast(j)*xwtt
-            pwe(j+1)=(pdl(j)+pdc(j))/vk(j)
+            !pwe(j+1)=(pdl(j)+pdc(j))/vk(j)
         end do
-        pwe(1)=pwe(2)
-        pwe(nr+2)=zero
+        !pwe(1)=pwe(2)
+        !pwe(nr+2)=zero
 
         !!   find nevyazka
         !!----------------------------
@@ -450,8 +445,40 @@ contains
         end do
 
         call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
+        call calculate_out_power(outpe)
+        pe_out=ol+oc
+        deallocate(vvj,vdfj)
+    end    
+
+    subroutine calculate_out_power(out_pe)
+        use constants, only: zero, one
+        use rt_parameters, only: nr, ismthout
+        use plasma, only: rh, rh1, nspl, vk
+        use current, only: pdl, pdc
+        use math_module, only: fsmoth4
+        use lock_module, only: lock2, linf
+        implicit none
+        real(wp), intent(inout) :: out_pe(*)
+        real(wp) :: rxx(102)
+        integer  :: i, j, nrr
+        integer  :: klo,khi,ierr
+        real(wp) :: hr, fout
+        real(wp) :: pwe(102),wrk(102)
+
+        hr = 1.d0/dble(nr+1)
+        nrr=nr+2
+        rxx(1)=zero
+        rxx(nrr)=one
+        do j=1,nr
+            rxx(j+1)=hr*dble(j)
+        end do
 
         if(ismthout.ne.0) then
+            do j=1,nr
+                pwe(j+1)=(pdl(j)+pdc(j))/vk(j)
+            end do
+            pwe(1)=pwe(2)
+            pwe(nr+2)=zero
             do i=1,nrr
                 wrk(i)=pwe(i)
             end do
@@ -469,13 +496,11 @@ contains
                 pause
             end if
             call linf(rxx,pwe,rh(j),fout,klo,khi)
-            outpe(j)=fout
+            out_pe(j)=fout
         end do
-        pe_out=ol+oc
         rh(1)=zero
         !
-        deallocate(vvj,vdfj)
-    end    
+    end 
 
     subroutine init_iteration
         use constants, only : zero
