@@ -306,11 +306,7 @@ contains
             pdc(j)=pdc(j)*xwtt
             pda(j)=pda(j)*xwtt
             pdfast(j)=pdfast(j)*xwtt
-            !pwe(j+1)=(pdl(j)+pdc(j))/vk(j)
         end do
-        !pwe(1)=pwe(2)
-        !pwe(nr+2)=zero
-
         !!   find nevyazka
         !!----------------------------
         psum1=zero
