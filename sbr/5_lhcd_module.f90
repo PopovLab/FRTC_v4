@@ -243,15 +243,7 @@ contains
         !c------------------------------------
         !c set initial values of arrays
         !c------------------------------------
-        !dland=zero
-        !dcoll=zero
-        !perpn=zero
-        !dalf=zero
-        !vel=zero
-        !jrad=0
         iww=0
-        !tatai=zero
-        !xnpar=zero
         izz=zero
         ! 
         pdl=zero
@@ -260,12 +252,6 @@ contains
         pdfast=zero
         pdprev1=zero
         pdprev2=zero
-
-        !tok=zero
-        !cur=zero
-        !pd2=zero
-        !pd2a=zero
-        !pd2b=zero
 
         dql=zero
         dq1=zero
