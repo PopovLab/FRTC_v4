@@ -59,6 +59,32 @@ function find_nevyazka(pdprev1, pdprev2) result(pchg)
 
 end function
 
+subroutine calculate_total_current_and_power(ol, oc, oa, of)
+    !! calculate total current and power
+    use constants, only: zero
+    use rt_parameters, only : nr
+    implicit none
+    real(wp), intent(inout):: ol, oc, oa, of
+    real(wp) :: cppl, cppc, cppa, cppf
+    integer j
+    !----------------------------------------
+    !     calculate total current and power
+    !----------------------------------------
+    cppl=zero
+    cppc=zero
+    cppa=zero
+    cppf=zero
+    do j=1,nr
+        cppl=cppl+pdl(j)
+        cppc=cppc+pdc(j)
+        cppa=cppa+pda(j)
+        cppf=cppf+pdfast(j)
+    end do
+    ol=cppl*1d-6
+    oc=cppc*1d-6
+    oa=cppa*1d-6
+    of=cppf*1d-6    
+end 
 
 subroutine renormalisation_power
     !! renormalisation on xwtt 1e-7_wp
