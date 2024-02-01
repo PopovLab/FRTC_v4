@@ -53,30 +53,15 @@ contains
         real(wp) :: dpw1, dpw2, cppl, cppc, cppa, cppf
         real(wp) :: oi, ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, fout
-        !real(wp) :: pd2(100),pd2a(100),pd2b(100)
         real(wp) :: galfa(50,100), vpmin(100), vcva(100)
         real(wp) :: pdprev1(100), pdprev2(100)
         real(wp) :: source(100), sour(100)
 
-        !dimension vmid(100),vz1(100),vz2(100),ibeg(100),iend(100)
-        !common /a0a4/ plost,pnab
-        !common /bcef/ ynz,ynpopq
-        !common /a0ghp/ vlf,vrt,dflf,dfrt
-        !common/plosh/ zv1(100,2),zv2(100,2)!,sk(100)
-        !common /asou/ rsou(102),sou(102),npta
-        !common/gridv/vgrid(101,100),dfundv(101,100),nvpt
-        !common /vvv2/ psum4
-        !common /arr/ dgdu(50,100),kzero(100)
-        !common /ag/ inak,lenstor,lfree
         real(wp) ::  rmx_n, rmx_t, rmx_z, rmx_ti
         ! встречает только один раз common /maxrho/ rmx_n,rmx_t,rmx_z,rmx_ti
       
         type(IterationResult) :: iteration_result
         real*8 kofpar,timecof
-        !real*8,dimension(:),allocatable:: vvj,vdfj
-
-        !double precision vrj(101),dj(101),djnew(1001)
-        !double precision dj2(101),d2j(101)
 
         integer     :: iptnew
         real(wp)    :: plaun
