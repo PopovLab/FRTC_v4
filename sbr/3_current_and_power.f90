@@ -28,6 +28,20 @@ module current
     !common/findsigma/dncount(101,100)
 contains
 
+subroutine renormalisation_power
+    !! renormalisation on xwtt 1e-7_wp
+    use constants, only: xwtt
+    use rt_parameters, only : nr
+    implicit none
+    integer j
+    do j=1,nr
+        pdl(j)=pdl(j)*xwtt
+        pdc(j)=pdc(j)*xwtt
+        pda(j)=pda(j)*xwtt
+        pdfast(j)=pdfast(j)*xwtt
+    end do
+end
+
 subroutine find_achieved_radial_points(nvpt)
     !!  find achieved radial points jbeg-jend
     use rt_parameters, only : nr
