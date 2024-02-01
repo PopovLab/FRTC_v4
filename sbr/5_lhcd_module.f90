@@ -287,12 +287,8 @@ contains
 
         call find_achieved_radial_points(nvpt)
 
-        do j=1,nr
-            pdl(j)=pdl(j)*xwtt
-            pdc(j)=pdc(j)*xwtt
-            pda(j)=pda(j)*xwtt
-            pdfast(j)=pdfast(j)*xwtt
-        end do
+        call renormalisation_power
+        
         !!   find nevyazka
         !!----------------------------
         psum1=zero

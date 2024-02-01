@@ -5,6 +5,8 @@ module current
     real(wp) :: dql(101,100)
     !!
     real(wp) :: pdl(100)
+    real(wp) :: pdc(100)
+    real(wp) :: pda(100)
     !!
     real(wp) :: vzmin(100)
     !!
@@ -16,8 +18,7 @@ module current
     !common /a0i4/ fcoll(100),dens(100),eta(100)
     real(wp) :: dq1(101,100)
     real(wp) :: dq2(101,100)
-    real(wp) :: pdc(100)
-    real(wp) :: pda(100)
+
     real(wp) :: ppv1,ppv2
     !common/vvv1/dq1(101,100),dq2(101,100),pdc(100),pda(100),ppv1,ppv2
     real(wp) :: pdfast(100)
@@ -27,6 +28,20 @@ module current
     real(wp) :: dncount(101,100)
     !common/findsigma/dncount(101,100)
 contains
+
+subroutine renormalisation_power
+    !! renormalisation on xwtt 1e-7_wp
+    use constants, only: xwtt
+    use rt_parameters, only : nr
+    implicit none
+    integer j
+    do j=1,nr
+        pdl(j)=pdl(j)*xwtt
+        pdc(j)=pdc(j)*xwtt
+        pda(j)=pda(j)*xwtt
+        pdfast(j)=pdfast(j)*xwtt
+    end do
+end
 
 subroutine find_achieved_radial_points(nvpt)
     !!  find achieved radial points jbeg-jend
