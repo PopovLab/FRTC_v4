@@ -44,10 +44,10 @@ contains
         real(wp) :: u, u1, e1, e2, e3, tmp
         real(wp) :: cn1, avedens
         real(wp) :: anb, fuspow, o_da
-        real(wp) :: dvperp, ddens, dn1, dn2
+        real(wp) :: dvperp, ddens
         real(wp) :: tt, cn2, vmax, v1, v2
         real(wp) :: tdens, dfout
-        real(wp) :: anb0, aratio, sssour
+
         real(wp) :: q_rest, q_abs, q_cond
         real(wp) :: pchg
 
@@ -56,7 +56,7 @@ contains
         real(wp) :: zff, cnyfoc, dconst, fout
         real(wp) :: galfa(50,100), vpmin(100), vcva(100)
         real(wp) :: pdprev1(100), pdprev2(100)
-        real(wp) :: source(100), sour(100)
+        real(wp) :: source(100)
 
         real(wp) ::  rmx_n, rmx_t, rmx_z, rmx_ti
         ! встречает только один раз common /maxrho/ rmx_n,rmx_t,rmx_z,rmx_ti
@@ -197,34 +197,7 @@ contains
         end do
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if(itend0.gt.0) then  ! begin alpha-source renormalisation
-            fuspow=anb*talfa*1.6022d-19
-            anb0=anb
-            anb=zero
-            do j=1,nr
-                r=hr*dble(j)
-                if(r.le.dra) then
-                    tt=fti(zero)**one_third
-                else
-                    tt=fti(r-dra)**one_third    ! (shifted ti, kev)^1/3
-                end if
-                ddens=dn1*dens(j)
-                tdens=dn2*dens(j)
-                sour(j)=4d-12*factor*ddens*tdens*dexp(-20d0/tt)/tt**2
-                anb=anb+sour(j)*vk(j)
-            end do
-            aratio=anb0/anb
-            rsou(1)=zero
-            sou(1)=aratio*sour(1)
-            do j=1,nr
-                r=hr*dble(j)
-                rsou(j+1)=r
-                sou(j+1)=aratio*sour(j)
-                if(j.eq.nr) sssour=source(j)
-                source(j)=sou(j+1)
-            end do
-            npta=nr+2
-            rsou(npta)=1.d0
-            sou(npta)=aratio*sour(nr)
+            call alpha_source_renormalisation(anb, fuspow, source)
         end if
         !c------------------------------------
         !c set initial values of arrays
@@ -338,6 +311,52 @@ contains
         deallocate(vvj,vdfj)
     end    
     
+    subroutine alpha_source_renormalisation(anb, fuspow, source)
+        use constants, only: zero, talfa, one_third
+        use rt_parameters, only: nr, dra, factor
+        use source_new_mod, only: rsou, sou, npta
+        use plasma, only: fti, dn1, dn2, vk
+        use current, only: dens
+        implicit none
+        real(wp), intent(inout) :: anb
+        real(wp), intent(inout) :: fuspow
+        real(wp), intent(inout) :: source(:)
+        real(wp) :: r, hr, tt
+        real(wp) :: anb0, aratio, sssour
+        real(wp) :: ddens, tdens
+        real(wp) :: sour(100)
+        integer j
+        hr = 1.d0/dble(nr+1)
+        fuspow=anb*talfa*1.6022d-19
+        anb0=anb
+        anb=zero
+        do j=1,nr
+            r=hr*dble(j)
+            if(r.le.dra) then
+                tt=fti(zero)**one_third
+            else
+                tt=fti(r-dra)**one_third    ! (shifted ti, kev)^1/3
+            end if
+            ddens=dn1*dens(j)
+            tdens=dn2*dens(j)
+            sour(j)=4d-12*factor*ddens*tdens*dexp(-20d0/tt)/tt**2
+            anb=anb+sour(j)*vk(j)
+        end do
+        aratio=anb0/anb
+        rsou(1)=zero
+        sou(1)=aratio*sour(1)
+        do j=1,nr
+            r=hr*dble(j)
+            rsou(j+1)=r
+            sou(j+1)=aratio*sour(j)
+            if(j.eq.nr) sssour=source(j)
+            source(j)=sou(j+1)
+        end do
+        npta=nr+2
+        rsou(npta)=1.d0
+        sou(npta)=aratio*sour(nr)        
+    end
+
     subroutine calculate_diffusion(ispectr)
         !! calculate diffusion
         use constants, only: c0, pme, zero
