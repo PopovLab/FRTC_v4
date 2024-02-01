@@ -50,8 +50,9 @@ contains
 
         real(wp) :: q_rest, q_abs, q_cond
         real(wp) :: pchg
-        real(wp) :: cppl, cppc, cppa, cppf
-        real(wp) :: oi, ol, oc, oa, of
+
+        real(wp) :: oi
+        real(wp) :: ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, fout
         real(wp) :: galfa(50,100), vpmin(100), vcva(100)
         real(wp) :: pdprev1(100), pdprev2(100)
@@ -216,6 +217,8 @@ contains
         pdc=zero
         pda=zero
         pdfast=zero
+
+        !! массивы для невзязки
         pdprev1=zero
         pdprev2=zero
 
@@ -259,36 +262,12 @@ contains
 
         call find_achieved_radial_points(nvpt)
 
-        do j=1,nr
-            pdl(j)=pdl(j)*xwtt
-            pdc(j)=pdc(j)*xwtt
-            pda(j)=pda(j)*xwtt
-            pdfast(j)=pdfast(j)*xwtt
-            !pwe(j+1)=(pdl(j)+pdc(j))/vk(j)
-        end do
-        !pwe(1)=pwe(2)
-        !pwe(nr+2)=zero
-
-        !!   find nevyazka
+        call renormalisation_power
+        
         pchg = find_nevyazka(pdprev1, pdprev2)
 
-        !c----------------------------------------
-        !c     calculate total current and power
-        !c----------------------------------------
-        cppl=zero
-        cppc=zero
-        cppa=zero
-        cppf=zero
-        do j=1,nr
-            cppl=cppl+pdl(j)
-            cppc=cppc+pdc(j)
-            cppa=cppa+pda(j)
-            cppf=cppf+pdfast(j)
-        end do
-        ol=cppl*1d-6
-        oc=cppc*1d-6
-        oa=cppa*1d-6
-        of=cppf*1d-6
+        call calculate_total_current_and_power(ol, oc, oa, of)
+
         !!!!!!!!! prepare to the next iteration !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         iterat=iterat+1
         q_abs=ol+oc+oa
