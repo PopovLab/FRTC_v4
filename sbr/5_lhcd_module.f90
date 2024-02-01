@@ -49,8 +49,8 @@ contains
         real(wp) :: tdens, dfout
         real(wp) :: anb0, aratio, sssour
         real(wp) :: q_rest, q_abs, q_cond
-        real(wp) :: psum1, psum2, pchg, pchg1, pchg2
-        real(wp) :: dpw1, dpw2, cppl, cppc, cppa, cppf
+        real(wp) :: pchg
+        real(wp) :: cppl, cppc, cppa, cppf
         real(wp) :: oi, ol, oc, oa, of
         real(wp) :: zff, cnyfoc, dconst, fout
         !real(wp) :: pd2(100),pd2a(100),pd2b(100)
@@ -290,24 +290,8 @@ contains
         call renormalisation_power
         
         !!   find nevyazka
-        !!----------------------------
-        psum1=zero
-        psum2=zero
-        pchg=zero
-        pchg1=zero
-        pchg2=zero
-        do j=1,nr
-            dpw1=pdl(j)+pdc(j)
-            dpw2=pda(j)
-            psum1=psum1+dpw1**2
-            psum2=psum2+dpw2**2
-            pchg1=pchg1+(dpw1-pdprev1(j))**2
-            pchg2=pchg2+(dpw2-pdprev2(j))**2
-            pdprev1(j)=dpw1
-            pdprev2(j)=dpw2
-        end do
-        if(psum1.ne.zero) pchg=pchg1/psum1 !sav2008
-        if(psum2.ne.zero) pchg=pchg+pchg2/psum2
+        pchg = find_nevyazka(pdprev1, pdprev2)
+
         !c----------------------------------------
         !c     calculate total current and power
         !c----------------------------------------
