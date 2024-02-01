@@ -30,7 +30,7 @@ contains
         use lock_module
         use math_module
         !use driver_module, only : lfree
-        use driven_current_module, only : zv1, zv2
+        !use driven_current_module, only : zv1, zv2
         use decrements, only: kzero
         use source_new_mod
         
@@ -52,7 +52,7 @@ contains
         real(wp) :: psum1, psum2, pchg, pchg1, pchg2
         real(wp) :: dpw1, dpw2, cppl, cppc, cppa, cppf
         real(wp) :: oi, ol, oc, oa, of
-        real(wp) :: zff, cnyfoc, dconst, ddout, fout
+        real(wp) :: zff, cnyfoc, dconst, fout
         !real(wp) :: pd2(100),pd2a(100),pd2b(100)
         real(wp) :: galfa(50,100), vpmin(100), vcva(100)
         real(wp) :: pdprev1(100), pdprev2(100)
@@ -80,8 +80,7 @@ contains
 
         integer     :: iptnew
         real(wp)    :: plaun
-        real(wp)    :: dijk(101,100,2), vrjnew(101,100,2)
-        !встречает только один раз common/t01/dijk(101,100,2), vrjnew(101,100,2), iptnew
+
         integer ispectr
         integer :: i, j, k  
         integer :: klo,khi,ierr
@@ -396,7 +395,39 @@ contains
             write (*,*) '-------------------------------------------'
         end if
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        call calculate_diffusion(ispectr)
+
+        call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
+        call calculate_out_power(outpe)
+        pe_out=ol+oc
+        deallocate(vvj,vdfj)
+    end    
+    
+    subroutine calculate_diffusion(ispectr)
+        !! calculate diffusion
+        use constants, only: c0, pme, zero
+        use rt_parameters, only: nr, inew, ni1, ni2
+        use plasma, only: zefff, fn1, fn2
+        use plasma, only: vt0, fvt, cltn, cnye
+        use driven_current_module, only : zv1, zv2
+        use current, only : dql
+        use maxwell, only: i0, vij, dfij, dij
+        use iterator_mod, only: ipt, ipt1
+        use iterator_mod, only: vrj, dj, vgrid
+        use lock_module, only: lock
+        implicit none
+        integer, intent(in) :: ispectr
+        integer  :: i,j,k
+        integer  :: klo,khi,ierr
+        real(wp) :: r, hr
+        real(wp) :: vt, vto, vmax, zff, cnyfoc
+        real(wp) :: pn, fnr, fnrr
+        real(wp) :: dconst, ddout
+        real(wp) :: dijk(101,100,2), vrjnew(101,100,2)
+        !встречает только один раз common/t01/dijk(101,100,2), vrjnew(101,100,2), iptnew
         !
+        hr = 1.d0/dble(nr+1)
         k=(3-ispectr)/2
         do j=1,nr
             r=hr*dble(j)
@@ -443,13 +474,7 @@ contains
             zv1(j,k)=vrj(ipt1)
             zv2(j,k)=vrj(ni1+ni2+ipt1)
         end do
-
-        call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
-        call calculate_out_power(outpe)
-        pe_out=ol+oc
-        deallocate(vvj,vdfj)
-    end    
-
+    end 
     subroutine calculate_out_power(out_pe)
         use constants, only: zero, one
         use rt_parameters, only: nr, ismthout
@@ -553,7 +578,7 @@ contains
     subroutine recalculate_f_for_a_new_mesh(ispectr)
         !!   recalculate f' for a new mesh
         use constants, only : zero
-        use rt_parameters, only : nr, ni1,ni2
+        use rt_parameters, only : nr, ni1, ni2
         use plasma, only: vt0, fvt, cltn
         use current, only: vzmin, vzmax
         use maxwell, only: i0, vij, dfij
