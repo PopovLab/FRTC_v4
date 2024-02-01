@@ -58,6 +58,7 @@ module plasma
 
     real(wp) enorm(100), fst(100)
     !! em поле и еще что-то
+    real(wp) dn1, dn2, dn3
 contains
     subroutine init_plasma(NA1, ABC, BTOR, RTOR, UPDWN, GP2, AMETR, RHO, SHIF, ELON, TRIA,MU, NE, TE, TI, ZEF, UPL)
         use constants
@@ -183,7 +184,7 @@ contains
         use rt_parameters
         implicit none
         real(wp) :: xly, xlyp, arg1, arg2  
-        real(wp) :: hr, dn1, dn2, dn3, sss
+        real(wp) :: hr, sss
     !!!   
         xly = fdf(one,cly,ncoef,xlyp)
         arg1=(zplus-z0)/(xly*rm)
