@@ -141,7 +141,7 @@ contains
         x=x1
         h=dsign(h1,x2-x1)
         ind=0
-        ipow=1
+        ipow=-1
         xold=x
         hsav=hrad*irs
         hdid=zero
@@ -152,7 +152,7 @@ contains
         !-------------- start moving -------------
         do nstp=1, maxstep2
             !--------- netpoint control -----------
-            dstsav= 0 !dabs(x-xsav)
+            dstsav= dabs(x-xsav)
             if(dstsav.lt.tiny1) then
                 ipow=ipow+2
                 jfoundr=idnint(x/hrad)
