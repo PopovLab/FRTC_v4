@@ -7,7 +7,7 @@ module lhcd_module
     type(Spectrum) :: full_spectrum
     type(Spectrum) :: pos_spectr, neg_spectr
 
-    real(wp), dimension(:), allocatable:: vvj, vdfj
+    !real(wp), dimension(:), allocatable:: vvj, vdfj
 
     integer, parameter :: kpt1=20, kpt3=20
 
@@ -46,7 +46,7 @@ contains
         real(wp) :: anb, fuspow, o_da
         real(wp) :: dvperp, ddens
         real(wp) :: tt, cn2, vmax, v1, v2
-        real(wp) :: tdens, dfout
+        real(wp) :: tdens
 
         real(wp) :: q_rest, q_abs, q_cond
         real(wp) :: pchg
@@ -167,34 +167,10 @@ contains
             end do
         end do                     ! end 'rho' cycle 
 
+
         !!!!!!!!!read data !!!!!!!!!!!!       
-        allocate(vvj(i0),vdfj(i0))
-        k=(3-ispectr)/2
-        do j=1,nr
-            r=hr*dble(j)
-            vt=fvt(r)
-            vto=vt/vt0
-            do i=1,i0
-                vvj(i)=vij(i,j)
-                vdfj(i)=dfij(i,j,k) !=dfundv(i,j)*vto**2
-            end do
-            do i=1,ipt
-                vrj(i)=vgrid(i,j)/vto   !Vpar/Vt
-                call lock(vvj,i0,vrj(i),klo,khi,ierr)
-                if(ierr.eq.1) then
-                    write(*,*)'lock error in read distribution function'
-                    write(*,*)'j=',j,'i0=',i0
-                    write(*,*)'vvj(1)=',vvj(1),' vvj(i0)=',vvj(i0)
-                    write(*,*)'i=',i,' vrj(i)=',vrj(i),' vmax=',cltn/vto
-                    write(*,*)
-                    pause'next key = stop'
-                    stop
-                end if
-                call linf(vvj,vdfj,vrj(i),dfout,klo,khi)
-                dfundv(i,j)=dfout/vto**2
-                if(dfundv(i,j).gt.zero) dfundv(i,j)=zero
-            end do
-        end do
+        call calculate_dfundv(ispectr)
+        
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if(itend0.gt.0) then  ! begin alpha-source renormalisation
             call alpha_source_renormalisation(anb, fuspow, source)
@@ -308,9 +284,58 @@ contains
         call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
         call calculate_out_power(outpe)
         pe_out=ol+oc
-        deallocate(vvj,vdfj)
+        
     end    
     
+    subroutine calculate_dfundv(ispectr)
+        !! calculate dfundv что такое dfundv?
+        use constants, only: zero
+        use rt_parameters, only: nr
+        use plasma, only: fvt, vt0, cltn
+        use maxwell, only: i0, vij, dfij, dij
+        use iterator_mod, only: dfundv
+        use iterator_mod, only: ipt
+        use iterator_mod, only: vrj, dj, vgrid
+        use lock_module, only: lock, linf
+        implicit none
+        integer, intent(in) :: ispectr
+        real(wp), dimension(:), allocatable:: vvj, vdfj
+        integer  :: i, j, k 
+        integer  :: klo,khi,ierr
+        real(wp) :: dfout
+        real(wp) :: r, hr
+        real(wp) :: vt, vto
+        hr = 1.d0/dble(nr+1)
+        allocate(vvj(i0),vdfj(i0))
+        k=(3-ispectr)/2
+        do j=1,nr
+            r=hr*dble(j)
+            vt=fvt(r)
+            vto=vt/vt0
+            do i=1,i0
+                vvj(i)=vij(i,j)
+                vdfj(i)=dfij(i,j,k) !=dfundv(i,j)*vto**2
+            end do
+            do i=1,ipt
+                vrj(i)=vgrid(i,j)/vto   !Vpar/Vt
+                call lock(vvj,i0,vrj(i),klo,khi,ierr)
+                if(ierr.eq.1) then
+                    write(*,*)'lock error in read distribution function'
+                    write(*,*)'j=',j,'i0=',i0
+                    write(*,*)'vvj(1)=',vvj(1),' vvj(i0)=',vvj(i0)
+                    write(*,*)'i=',i,' vrj(i)=',vrj(i),' vmax=',cltn/vto
+                    write(*,*)
+                    pause'next key = stop'
+                    stop
+                end if
+                call linf(vvj,vdfj,vrj(i),dfout,klo,khi)
+                dfundv(i,j)=dfout/vto**2
+                if(dfundv(i,j).gt.zero) dfundv(i,j)=zero
+            end do
+        end do
+        deallocate(vvj,vdfj)
+    end
+
     subroutine alpha_source_renormalisation(anb, fuspow, source)
         use constants, only: zero, talfa, one_third
         use rt_parameters, only: nr, dra, factor
@@ -428,6 +453,7 @@ contains
             zv2(j,k)=vrj(ni1+ni2+ipt1)
         end do
     end 
+
     subroutine calculate_out_power(out_pe)
         use constants, only: zero, one
         use rt_parameters, only: nr, ismthout
@@ -542,11 +568,12 @@ contains
         
         integer i, j, k
         real(wp) :: cdel, dfout
-
+        real(wp), dimension(:), allocatable:: vvj, vdfj
         integer :: klo,khi,ierr
         real(wp) :: r, hr, vt, vto, vmax
         real(wp) :: v1, v2, vp1, vp2
 
+        allocate(vvj(i0),vdfj(i0))
         hr = 1.d0/dble(nr+1)
         k=(3-ispectr)/2
         do j=1,nr
@@ -588,6 +615,7 @@ contains
             vz1(j)=v1
             vz2(j)=v2
         end do
+        deallocate(vvj,vdfj)
     end subroutine    
 
     subroutine alphas(d,u,j,kmax,g)
