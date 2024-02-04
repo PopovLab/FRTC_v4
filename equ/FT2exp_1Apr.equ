@@ -36,7 +36,7 @@ TI:AS;
 
 !TI = 0.16*(1.d0+0.1d0*FRAMP(0.026,0.034))*FPR**CF14+CF13;
 !TI = 0.265*(1.d0+0.1d0*FRAMP(CF2,CF3))*EXP(-(CF14+0.4)*(RHO/ROC)**2);
-TI = 1.0*TE
+TI = 0.1*TE
 
 !----------------- Impurities -----------------
 
@@ -85,9 +85,9 @@ CCD2 = IINT(CULHB);
 !----------------- Radial output -----------------
 
 J\CU\-1;        Upl\UPL;            Poh\POH\-2;      E\UPL/RTOR/GP2;
-Jlh\CULH\-1;    Te\TE;              CC\CC\-3;        Q\1./MU;
+Jlh\CULH\-1;    Te\TE\\TEX;              CC\CC\-3;        Q\1./MU;
 JBS\CUBS;       Ti\TI;            Plh\PELH\-2;     En\CAR24;
-Johm\CUOHM\8;   Ne\NE;              sig\CAR32\-3;    Chr\CAR31; 
+Johm\CUOHM\8;   Ne\NE\\NEX;              sig\CAR32\-3;    Chr\CAR31; 
 !----------------- Time output -----------------
 
 Ilh_ILHB_-10;       Qlh_QLH_-5;
