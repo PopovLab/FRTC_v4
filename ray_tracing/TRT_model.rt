@@ -16,13 +16,13 @@
       },
       "xmi1": {
         "title": "xmi1",
-        "value": 1.0,
+        "value": 2.0,
         "type": "float",
         "description": "Mi1/Mp,  relative mass of ions 1"
       },
       "zi1": {
         "title": "zi1",
-        "value": 2.0,
+        "value": 1.0,
         "type": "float",
         "description": "charge of ions 1"
       },
