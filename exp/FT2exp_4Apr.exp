@@ -10,7 +10,7 @@ ELONM           1.0                !elong. of the chamber
 ELONG           1.0                !elong. of the limiting magn. surface
 TRICH           0.0                !trian. of the chamber
 TRIAN           0.0                !trian. of the last magnetic surface
-AMJ             1.0                !mass of main ions
+AMJ             2.0                !mass of main ions
 ZMJ             1.0                !charge of main ions
 NB1             51                 !transport grid
 UPDWN           -0.0003               !up-down shift
