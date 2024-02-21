@@ -3,13 +3,16 @@
   "title": "Time Series data",
   "plots": {
     "ax1": [
-      "L"
+      "L",
+      "ICDA"
     ],
     "ax2": [
       "Iohm"
     ],
     "ax3": [
-      "V"
+      "QLh",
+      "V",
+      "ICDA"
     ]
   }
 }
