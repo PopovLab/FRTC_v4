@@ -264,7 +264,7 @@ contains
             call calculate_metrics(pa, tet)
 
             yn3 = point%Ntor*dsqrt(g33)/co
-            xm = 0 !point%Npol*dsqrt(g22)
+            xm =0 ! point%Npol*dsqrt(g22)
 
             call disp2_iroot2(pa,xm,tet,f1,f2)
             
