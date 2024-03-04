@@ -1,7 +1,6 @@
 .vs/
 .vscode/
 doc/html/
-*.dat
 *.dir
 *.bak
 *.zip
