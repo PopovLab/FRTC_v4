@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/PopovLab/FRTC_v4/ray_tracing/t15test1dbox.dat",
+      "source": "t15test1dbox.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
