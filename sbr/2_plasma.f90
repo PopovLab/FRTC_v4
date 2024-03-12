@@ -91,8 +91,9 @@ contains
             tem(i)=TE(i)
             temi(i)=TI(i)
             zeff(i)=ZEF(i)
-		!UPL(i)=0.5 !!!!!!!!!!! UPL by hands	
-            afld(i)=UPL(i)/RTOR/GP2 !!variant
+		!UPL(i)=0.5 !!!!!!!!!!! UPL by hands	not correct!!!!!
+           ! afld(i)=UPL(i)/RTOR/GP2 !!variant
+	    afld(i)=0.0/RTOR/GP2 !!variant
         end do
         rh(ngrid)=1.d0
         rh1=rh(1)          !saving the first ASTRA radial grid element
@@ -466,7 +467,7 @@ contains
             xlogj=dlog(5.1527d7*tmp*16.d0*dsqrt(tmp)/dsqrt(dens))
             enorm(j)=(3.835d0/xlogj)*efld*tmp/dens
             enorm(j)=enorm(j)*5.d0/(5.d0+zefff(r))
-            enorm(j)=0 !!!!electric field off
+            !!!enorm(j)=0 !!!!electric field off
             !!fst(j)=pn*xlogj*c0**4/pi4/vt**3
             fst(j)=((5.d0+zefff(r))/5.d0)*pn*xlogj*c0**4/pi4/vt**3
         end do        
