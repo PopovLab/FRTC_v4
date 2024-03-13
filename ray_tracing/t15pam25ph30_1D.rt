@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/dev/FRTC_v4/ray_tracing/spcpz_PAM_2.45GHz_8x4x13.6cm_dphi=+030_Case204.dat",
+      "source": "spcpz_PAM_2.45GHz_8x4x13.6cm_dphi=+030_Case204.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
