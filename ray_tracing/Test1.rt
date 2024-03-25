@@ -1,5 +1,5 @@
 {
-  "name": "FT2exp_1Apr",
+  "name": "Test1",
   "setting": {
     "Comments": {
       "value": "0.1 gap\n\n\n\n\n",
@@ -16,7 +16,7 @@
       },
       "xmi1": {
         "title": "xmi1",
-        "value": 1.0,
+        "value": 2.0,
         "type": "float",
         "description": "Mi1/Mp,  relative mass of ions 1"
       },
@@ -99,7 +99,7 @@
     "Numerical parameters": {
       "nr": {
         "title": "nr",
-        "value": 100,
+        "value": 30,
         "type": "int",
         "description": "radial grid number  <= 505"
       },
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "C:/Users/Astra_user/Desktop/spcpz_22_03_vac_gap_0.25cm.dat",
+      "source": "D:/work/FRTC_v5/spectrum_data/spcpz01 \u2014 \u043a\u043e\u043f\u0438\u044f.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
