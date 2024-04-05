@@ -42,7 +42,7 @@ ZIM1 = 8;
 AIM2 = 12;
 ZIM2 = 6;
 
-ZEF = 2.d0 + 0.5 * EXP(-1600*(AMETR)**2);
+ZEF = ZMJ + 1.4 * EXP(-500*(AMETR)**2);
 
 !Its densities
 
@@ -62,7 +62,7 @@ CU:EQ;
 CU = FPR;
 CAR31 = CNHR + CCMHD;
 CC = CAR31;
-
+CUOHMB = 0;
 DC = DCKIM;
 HC = HCKIM;
 XC = XCKIM;

@@ -10,15 +10,20 @@
       "title": "профили токов",
       "y_label": "Value [arb. unit]",
       "data": [
-        "NIZ2",
-        "NIZ1"
+        "Poh",
+        "Plh"
       ]
     },
     {
       "name": "ax2",
       "title": "профили E",
       "y_label": "Value [arb. unit]",
-      "data": []
+      "data": [
+        "Te",
+        "Ne",
+        "Ti",
+        "Ni"
+      ]
     },
     {
       "name": "ax3",
@@ -36,7 +41,9 @@
       "title": "профили температуры",
       "y_label": "Value [arb. unit]",
       "data": [
-        "SHIF"
+        "Zeff",
+        "q",
+        "E"
       ]
     }
   ]
