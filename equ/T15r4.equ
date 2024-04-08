@@ -45,8 +45,8 @@ CAR31X = 1.5e-6           ! to substitute this for "volume" neutral density
 !============Stationary FRTC 2014============
 !QLH=ZRD1;
 !QLH=0.12d0*(FRAMP(0.180,0.182)-FJUMP(0.3d0));
-CF1=0.18d0;
-CF2=0.195d0;
+!CF1=0.18d0;
+!CF2=0.195d0;
 !CF3=1.d-4;
 !lhcd(0.d0,CULH,PELH,CAR12,CAR13,CAR14,CAR15):0.001:0.185::A;
 !CAR12 = power deposition into electrons via collisional damping

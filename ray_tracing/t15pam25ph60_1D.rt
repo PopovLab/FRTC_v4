@@ -291,7 +291,7 @@
       },
       "ntet": {
         "title": "ntet",
-        "value": 5,
+        "value": 15,
         "type": "int",
         "description": "theta grid number"
       },

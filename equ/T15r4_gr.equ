@@ -8,7 +8,7 @@ TSTART = 0.11;
 TEND = 2.9;
 TINIT=0.299;
 TSCALE = 0.006;
-TPAUSE = 0.303;
+TPAUSE = 0.305;
 
      
 !BTOR=1.0d0;
@@ -45,7 +45,9 @@ CAR31X = 1.5e-6           ! to substitute this for "volume" neutral density
 !============Stationary FRTC 2014============
 !QLH=ZRD1;
 !QLH=0.12d0*(FRAMP(0.180,0.182)-FJUMP(0.3d0));
-CF1=0.18d0;
+!CF1=0.18d0;
+!
+
 CF2=0.195d0;
 !CF3=1.d-4;
 !lhcd(0.d0,CULH,PELH,CAR12,CAR13,CAR14,CAR15):0.001:0.185::A;
@@ -97,7 +99,7 @@ NBND = 100;
 NEQUIL = 41;
 
 !==========Plasma Composition=================
-ZEF=1.6; !+0.5*FRAMP(0.190,0.21);
+ZEF=2.6; !+0.5*FRAMP(0.190,0.21);
 ZIM1=ZICAR; AIM1=12.0;
 NIZ1=NE*(ZEF-ZMJ)/(ZIM1-ZMJ)/ZIM1;
 NIZ2=0;
