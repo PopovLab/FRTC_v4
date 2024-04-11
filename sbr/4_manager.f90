@@ -265,7 +265,7 @@ contains
 		
 		!!!!!Nparallel
             yn3 = point%Ntor*dsqrt(g33)/co 
-            xm = 0 !point%Npol*dsqrt(g22)/si
+            xm = point%Npol*dsqrt(g22)/si
 
 		!!!!!Ntor & Npol 2D
          !   yn3 = point%Ntor*dsqrt(g33)
