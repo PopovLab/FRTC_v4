@@ -1,10 +1,11 @@
- Name   Time    Value   Error   Comment
-RTOR            0.55
+Name   Time    Value   Error   Comment
+
+RTOR            0.15
 AB              0.078
 ABC             0.070
 BTOR            2.08
 IPL             0.0236
-AMJ             1.0
+AMJ             2.0
 ZMJ             1.0
 NB1             100
 

@@ -1,6 +1,7 @@
 {
   "title": "Time Series",
   "show_grid": true,
+  "show_axis_labels": true,
   "shape": "1x3",
   "x_axis": "time",
   "x_label": "time [ms]",
@@ -30,8 +31,7 @@
       "title": "Chart 3",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Qlh",
-        "NEV"
+        "Qlh"
       ]
     }
   ]

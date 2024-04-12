@@ -1,6 +1,7 @@
 {
   "title": "Radial Data",
   "show_grid": true,
+  "show_axis_labels": true,
   "shape": "2x2",
   "x_axis": "ameter",
   "x_label": "Value [arb. unit]",
@@ -41,9 +42,7 @@
       "title": "профили температуры",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Zeff",
-        "q",
-        "E"
+        "Zeff"
       ]
     }
   ]

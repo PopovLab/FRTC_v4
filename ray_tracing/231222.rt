@@ -1,8 +1,8 @@
 {
-  "name": "new_model_3805",
+  "name": "231222",
   "setting": {
     "Comments": {
-      "value": "Comments about ....",
+      "value": "0.1 gap\n\n\n\n\n\n",
       "title": "Comments",
       "type": "text"
     },
@@ -28,7 +28,7 @@
       },
       "xmi2": {
         "title": "xmi2",
-        "value": 18.0,
+        "value": 16.0,
         "type": "float",
         "description": "Mi2/Mp,  relative mass of ions 2"
       },
@@ -40,25 +40,25 @@
       },
       "dni2": {
         "title": "dni2",
-        "value": 0.03,
+        "value": 0.05,
         "type": "float",
         "description": "Ni2/Ni1, relative density of ions 2"
       },
       "xmi3": {
         "title": "xmi3",
-        "value": 1.0,
+        "value": 12.0,
         "type": "float",
         "description": "Mi3/Mp,  relative mass of ions 3"
       },
       "zi3": {
         "title": "zi3",
-        "value": 1.0,
+        "value": 6.0,
         "type": "float",
         "description": "charge of ions 3"
       },
       "dni3": {
         "title": "dni3",
-        "value": 0.0,
+        "value": 0.05,
         "type": "float",
         "description": "Ni3/Ni1, relative density of ions 3"
       }
@@ -159,7 +159,7 @@
       },
       "pabs": {
         "title": "pabs",
-        "value": 0.01,
+        "value": 0.15,
         "type": "float",
         "description": "part of remaining power interp. as absorption"
       },
@@ -277,34 +277,34 @@
     "grill parameters": {
       "Zplus": {
         "title": "Zplus",
-        "value": 11,
+        "value": 11.0,
         "type": "float",
         "unit": "cm",
         "description": "upper grill corner in centimeters"
       },
       "Zminus": {
         "title": "Zminus",
-        "value": -11,
+        "value": -11.0,
         "type": "float",
         "unit": "cm",
         "description": "lower grill corner in centimeters"
       },
       "ntet": {
         "title": "ntet",
-        "value": 10,
+        "value": 21,
         "type": "int",
         "description": "theta grid number"
       },
       "nnz": {
         "title": "nnz",
-        "value": 50,
+        "value": 51,
         "type": "int",
         "description": "iN_phi grid number"
       }
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "",
+      "source": "C:/Users/Astra_user/Desktop/spcpz.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
