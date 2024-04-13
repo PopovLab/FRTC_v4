@@ -31,7 +31,8 @@
       "title": "Chart 3",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Qlh"
+        "Qlh",
+        "Plh"
       ]
     }
   ]

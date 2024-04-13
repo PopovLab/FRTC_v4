@@ -80,8 +80,8 @@ lhcd2017(PELH):CF1:CF2:CF3:;
 drivencurrent(CULH,CAR32,CU)::CF2:CF3:;
 
 CD = CULH;
-CCD1 = VINT(PELHB);
-CCD2 = IINT(CULHB);
+CCD1 = VINT(PELH);
+CCD2 = IINT(CULH);
 
 !----------------- Auxiliary quantities -----------------
 CV14 = NEAVB;
@@ -93,7 +93,7 @@ ER = BTOR*(FRS*MU*VTOR/RTOR+VDIA-VPOL);
  !PE = POH+PEBM-PET*TI; PET = -PEI; 
  !PI = PIBM-PIT*TE; PIT = -PEI;
 !----------------- Radial output -----------------
-Te\TE\\TEX; Elong\ELON; J\CU; Utor\UPL;
+Te\TE\\TEX; Elong\ELON; J\CU; t_skin\(1/(4*3.14*CC));
 Ne\NE\\NEX; Zeff\ZEF; Johm\CUOHM; Poh\POH;
 Ti\TI; Shift\SHIF; Jlh\CULH; q\1/MU;
 Ni\NDEUT; E\UPL/RTOR/GP2; Jbs\CUBS; Plh\PELH;
@@ -106,6 +106,9 @@ Ilh_ILHB_-10;       Qlh_QLH_-5;
 U_UPLB_-2;          Iohm_IOHMB_-10;
 Ux_ZRD2_-2;         Ibs_IBSB;
 Ipl_IPL_-10;        E_UPL/RTOR/GP2_-2;
+Plh_CCD1;
+eta_(CCD2/CCD1);
+
 
 
 
