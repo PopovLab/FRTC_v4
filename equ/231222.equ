@@ -41,7 +41,8 @@ ZIM1 = 8;
 AIM2 = 12;
 ZIM2 = 6;
 
-ZEF = ZMAIN + (1.2 + 0.6*FRAMP(CF2,CF3))*EXP(-500*(AMETR)**2);
+!ZEF = ZMAIN + (1.2 + 0.6*FRAMP(CF2,CF3))*EXP(-500*(AMETR)**2);
+ZEF = ZMAIN + 1.2*EXP(-500*(AMETR)**2);
 
 !Its densities
 
