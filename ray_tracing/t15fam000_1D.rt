@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/dev/FRTC_v4/ray_tracing/spcpz_FAM_8x8x6.0cm_dphi= 000_Case04.dat",
+      "source": "spcpz_FAM_8x8x6.0cm_dphi= 000_Case04.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
