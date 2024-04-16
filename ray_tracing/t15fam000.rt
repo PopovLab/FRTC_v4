@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "scatter_spectrum",
-      "source": "D:/dev/FRTC_v4/ray_tracing/t15fam000box.dat"
+      "source": "t15fam000box.dat"
     }
   }
 }
