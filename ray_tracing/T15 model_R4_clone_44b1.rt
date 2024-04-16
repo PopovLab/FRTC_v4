@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "scatter_spectrum",
-      "source": "D:/PopovLab/FRTC_v4/ray_tracing/T15pam4r_Spectr.dat"
+      "source": "T15pam4r_Spectr.dat"
     }
   }
 }
