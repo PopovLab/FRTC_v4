@@ -3,7 +3,7 @@
   "show_grid": true,
   "show_axis_labels": true,
   "shape": "2x2",
-  "x_axis": "ameter",
+  "x_axis": "rho",
   "x_label": "Value [arb. unit]",
   "sub_plots": [
     {
@@ -11,8 +11,9 @@
       "title": "профили токов",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Poh",
-        "Plh"
+        "J",
+        "Johm",
+        "Jlh"
       ]
     },
     {
@@ -31,10 +32,8 @@
       "title": "профили мощности",
       "y_label": "Value [arb. unit]",
       "data": [
-        "J",
-        "Johm",
-        "Jlh",
-        "Jbs"
+        "Plh",
+        "Poh"
       ]
     },
     {
@@ -42,7 +41,7 @@
       "title": "профили температуры",
       "y_label": "Value [arb. unit]",
       "data": [
-        "Zeff"
+        "t_sk"
       ]
     }
   ]

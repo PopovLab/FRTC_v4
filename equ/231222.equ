@@ -42,7 +42,8 @@ AIM2 = 12;
 ZIM2 = 6;
 
 !ZEF = ZMAIN + (1.2 + 0.6*FRAMP(CF2,CF3))*EXP(-500*(AMETR)**2);
-ZEF = ZMAIN + 1.2*EXP(-500*(AMETR)**2);
+!ZEF = ZMAIN + 1.2*EXP(-500*(AMETR)**2);
+ZEF = 2.1 + 1.4*FRAMP(0.0336,CF3) + 0.08*FRAMP(0.0301,0.0336) + 0.1*(1 - FJUMP(0.0226));
 
 !Its densities
 
@@ -56,6 +57,8 @@ NDEUT = NI - NIZ1- NIZ2;
 
 !----------------- Plasma parametrs -----------------
 !Current densities
+!NEOCL(100)<:;
+!CUBS="work(j,301)";
 
 CU:EQ;
 CU = FPR;
@@ -72,7 +75,7 @@ NEQUIL = 41;
 !MIXINT(CV1,CF1):;
 !----------------- LHCD & DrivenCurrent -----------------
 
-QLH = (0.07d0-1.d-2*FRAMP(CF2,CF3)-0.06*FJUMP(CF3))*FJUMP(CF2);
+QLH = (0.1d0-1.d-2*FRAMP(CF2,CF3)-0.09*FJUMP(CF3))*FJUMP(CF2);
 
 debug:0.0001:DSTART::;
 saveprofiles::CF2:CF3:;
@@ -87,27 +90,32 @@ CCD2 = IINT(CULH);
 CV14 = NEAVB;
 CV13 = -TIMDER(CV14);
 
-VTOR = 0; VPOL = VPSWW;
-ER = BTOR*(FRS*MU*VTOR/RTOR+VDIA-VPOL);
+ !VTOR = 0; VPOL = VPSWW;
+ !ER = BTOR*(FRS*MU*VTOR/RTOR+VDIA-VPOL);
 
  !PE = POH+PEBM-PET*TI; PET = -PEI; 
  !PI = PIBM-PIT*TE; PIT = -PEI;
+
+!----------------- Inductive part -----------------
+DELTB(SHIFB,ZRD4,IPL,ABC):;
+CV9=AB-ABS(CV2);
+CV3=0.4*GP*IPL*RTOR*LOG(CV9/(0.13-CV2));
+CV8=TIMDER(CV3);
 !----------------- Radial output -----------------
 Te\TE\\TEX; Elong\ELON; J\CU; t_skin\(1/(4*3.14*CC));
 Ne\NE\\NEX; Zeff\ZEF; Johm\CUOHM; Poh\POH;
 Ti\TI; Shift\SHIF; Jlh\CULH; q\1/MU;
 Ni\NDEUT; E\UPL/RTOR/GP2; Jbs\CUBS; Plh\PELH;
 !----------------- Time output --------------
-
 Te0_TEXC; Ti0_TIC;
 <ne>_CV14; dnedt_CV13;
+eta_ABS(CCD2/CCD1)
 
 Ilh_ILHB_-10;       Qlh_QLH_-5;
 U_UPLB_-2;          Iohm_IOHMB_-10;
-Ux_ZRD2_-2;         Ibs_IBSB;
-Ipl_IPL_-10;        E_UPL/RTOR/GP2_-2;
-Plh_CCD1;
-eta_(CCD2/CCD1);
+Uxs_ZRD2;           Ibs_IBSB;
+Ipl_IPL_-10;        Ul_(UPLB+CV8);
+Ux_ZRD3;            Zeff_ZEFB;
 
 
 
