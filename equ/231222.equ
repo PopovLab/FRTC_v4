@@ -44,7 +44,7 @@ ZIM2 = 6;
 !ZEF = ZMAIN + (1.2 + 0.6*FRAMP(CF2,CF3))*EXP(-500*(AMETR)**2);
 !ZEF = ZMAIN + 1.2*EXP(-500*(AMETR)**2);
 ZEF = 2.1 + 1.4*FRAMP(0.0336,CF3) + 0.08*FRAMP(0.0301,0.0336) + 0.1*(1 - FJUMP(0.0226));
-
+!ZEF = 2.1 + 0.3*FRAMP(CF2,CF3);
 !Its densities
 
 NIZ1 = NE*(ZEF-ZMJ)/(ZIM1-ZMJ)/ZIM1;
@@ -96,20 +96,21 @@ CV13 = -TIMDER(CV14);
  !PE = POH+PEBM-PET*TI; PET = -PEI; 
  !PI = PIBM-PIT*TE; PIT = -PEI;
 
+CV15 = ABS(CCD2/CCD1);
 !----------------- Inductive part -----------------
 DELTB(SHIFB,ZRD4,IPL,ABC):;
 CV9=AB-ABS(CV2);
 CV3=0.4*GP*IPL*RTOR*LOG(CV9/(0.13-CV2));
 CV8=TIMDER(CV3);
 !----------------- Radial output -----------------
-Te\TE\\TEX; Elong\ELON; J\CU; t_skin\(1/(4*3.14*CC));
+Te\TE\\TEX; Elong\ELON; J\CU; t_skin\((ABC**2 * CC)/(796.5));
 Ne\NE\\NEX; Zeff\ZEF; Johm\CUOHM; Poh\POH;
 Ti\TI; Shift\SHIF; Jlh\CULH; q\1/MU;
 Ni\NDEUT; E\UPL/RTOR/GP2; Jbs\CUBS; Plh\PELH;
 !----------------- Time output --------------
-Te0_TEXC; Ti0_TIC;
-<ne>_CV14; dnedt_CV13;
-eta_ABS(CCD2/CCD1)
+Te0_TEC; Ti0_TIC;
+<ne>_CV14; etaCD_(CV14*RTOR*CV15);
+eta_CV15;
 
 Ilh_ILHB_-10;       Qlh_QLH_-5;
 U_UPLB_-2;          Iohm_IOHMB_-10;
