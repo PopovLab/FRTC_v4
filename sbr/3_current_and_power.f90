@@ -28,6 +28,38 @@ module current
     !common/findsigma/dncount(101,100)
 contains
 
+
+function find_nevyazka(pdprev1, pdprev2) result(pchg)
+    !! find nevyazka
+    use constants, only: zero
+    use rt_parameters, only : nr
+    implicit none
+    real(wp), intent(inout) :: pdprev1(:), pdprev2(:)
+    real(wp) :: psum1, psum2, pchg, pchg1, pchg2
+    real(wp) :: dpw1, dpw2
+    integer j
+
+    psum1=zero
+    psum2=zero
+    pchg=zero
+    pchg1=zero
+    pchg2=zero
+    do j=1,nr
+        dpw1=pdl(j)+pdc(j)
+        dpw2=pda(j)
+        psum1=psum1+dpw1**2
+        psum2=psum2+dpw2**2
+        pchg1=pchg1+(dpw1-pdprev1(j))**2
+        pchg2=pchg2+(dpw2-pdprev2(j))**2
+        pdprev1(j)=dpw1
+        pdprev2(j)=dpw2
+    end do
+    if(psum1.ne.zero) pchg=pchg1/psum1 !sav2008
+    if(psum2.ne.zero) pchg=pchg+pchg2/psum2    
+
+end function
+
+
 subroutine renormalisation_power
     !! renormalisation on xwtt 1e-7_wp
     use constants, only: xwtt
