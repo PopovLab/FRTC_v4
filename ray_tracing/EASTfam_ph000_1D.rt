@@ -1,8 +1,8 @@
 {
-  "name": "t15pam25ph60_1D",
+  "name": "EASTfam_ph000_1D",
   "setting": {
     "Comments": {
-      "value": "Comments about ....\n",
+      "value": "Comments about ....\n\n",
       "title": "Comments",
       "type": "text"
     },
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "spcpz_PAM_2.45GHz_dphi=+060_case04.dat",
+      "source": "spcpz_EAST_FAM_dhi=000.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
