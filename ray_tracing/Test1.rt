@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "C:/Users/Astra_user/Desktop/spcpz_\u043f\u0440\u0438\u043c\u0435\u0440.dat",
+      "source": "C:/Users/Astra_user/Desktop/spcpz.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
