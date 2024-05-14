@@ -11,7 +11,11 @@
       "y_label": "arb. unit",
       "data": [
         "IPL",
+<<<<<<< Updated upstream
         "QLh",
+=======
+        "Iohm",
+>>>>>>> Stashed changes
         "ICD"
       ]
     },
