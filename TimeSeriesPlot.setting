@@ -31,7 +31,7 @@
       "title": "Chart 3",
       "y_label": "Power [MW]",
       "data": [
-        "DR"
+        "Zeff"
       ]
     }
   ]

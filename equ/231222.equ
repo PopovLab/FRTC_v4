@@ -71,7 +71,7 @@ NEQUIL = 41;
 !MIXINT(CV1,CF1):;
 !----------------- LHCD & DrivenCurrent -----------------
 
-QLH = (0.062d0-1.d-2*FRAMP(CF2,CF3)-0.052*FJUMP(CF3))*FJUMP(CF2);
+QLH = (0.068d0-1.d-2*FRAMP(CF2,CF3)-0.058*FJUMP(CF3))*FJUMP(CF2);
 
 debug:0.0001:DSTART::;
 saveprofiles::CF2:CF3:;

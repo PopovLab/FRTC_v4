@@ -38,7 +38,7 @@ ZIM2 = 6;
 
 !ZEF = ZMAIN + (1.2 + 0.6*FRAMP(CF2,CF3))*EXP(-500*(AMETR)**2);
 !ZEF = ZMAIN + 1.2*EXP(-500*(AMETR)**2);
-ZEF = 1.9 + 0.7*FRAMP(0.0336,CF3) + 0.08*FRAMP(0.0301,0.0336) + 0.1*(1 - FJUMP(0.0226));
+ZEF = 1.9 + 0.7*FRAMP(0.0336,CF3) + 0.08*FRAMP(0.0301,0.0336);
 !ZEF = 2.1 + 0.3*FRAMP(CF2,CF3);
 !Its densities
 
@@ -107,12 +107,12 @@ CV8=TIMDER(CV3);
 Te\TE\\TEX\0.6; Jneo\(CU-CUBS-CD); Jpar\CU\10; shir\SHEAR;
 Ne\NE\2; Elong\ELON; Cond\CC; Poh\POH\10;
 Ti\TI\0.6; E\UPL/RTOR/GP2; Jlh\CULH\10; q\1./MU;
-Ni\NDEUT\2; Shift\SHIF; Jbs\CUBS; Plh\PELH\10;
+Ni\NDEUT\2; Shift\ZEF\\ZEFX; Jbs\CUBS; Plh\PELH\10;
 !----------------- Time output --------------
 q0_1./MU(0); q1_1./MU(ROC); Plhc_CV16; Pfr_CF16;
 Ibs_CV11; Iohm_CV10; Ilh_CCD2; Itot_CV10+CCD2+CV11;
 Qlh_QLH; Plh_CCD1; Zeff_ZEF(ROC);
-Uloop_(UPL(ROC)+CV8); Ux_ZRD3; Ur_ZRD4; DR_CV2;
+Uloop_(UPL(ROC)-CV8); Ux_ZRD3; Ur_ZRD4; DR_CV2;
 
 
 
