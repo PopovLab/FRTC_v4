@@ -10,7 +10,7 @@ DTOUT = 1.d-5;
 DSTART = 0.026d0;
 
 CF1 = 1.d-4;
-CF2 = 0.027;
+CF2 = 0.028;
 CF3 = 0.034;
 !----------------- Electrons parametrs -----------------
 CF14 = 1.5d0;
@@ -40,7 +40,7 @@ ZIM1 = 8;
 AIM2 = 12;
 ZIM2 = 6;
 
-ZEF = 1.6 + 0.1*FRAMP(0.032,CF3);
+ZEF = 1.6 + 0.4*FRAMP(0.033,CF3);
 
 !Its densities
 
@@ -71,8 +71,8 @@ QLH = (0.06d0-2.d-2*FRAMP(CF2,CF3)-0.04*FJUMP(CF3))*FJUMP(CF2);
 
 debug:0.0001:DSTART::;
 saveprofiles::CF2:CF3:;
-!lhcd2017(PELH):CF1:CF2:CF3:;
-!drivencurrent(CULH,CAR32,CU)::CF2:CF3:;
+lhcd2017(PELH):CF1:CF2:CF3:;
+drivencurrent(CULH,CAR32,CU)::CF2:CF3:;
 
 CD = CULH;
 CCD1 = VINT(PELHB);
