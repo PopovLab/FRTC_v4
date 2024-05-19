@@ -60,7 +60,7 @@ module plasma
     !! em поле и еще что-то
     real(wp) dn1, dn2, dn3
 contains
-    subroutine init_plasma(NA1, ABC, BTOR, RTOR, UPDWN, GP2, AMETR, RHO, SHIF, ELON, TRIA,MU, NE, TE, TI, ZEF, UPL)
+    subroutine init_plasma(NA1, ABC, BTOR, RTOR, UPDWN, GP2, AMETR, RHO, SHIF, ELON, TRIA, MU, NE, TE, TI, ZEF, UPL)
         use constants
         use approximation
         use rt_parameters
@@ -92,8 +92,8 @@ contains
             tem(i)=TE(i)
             temi(i)=TI(i)
             zeff(i)=ZEF(i)
-            afld(i)=UPL(i)/RTOR/GP2 !!variant
-            !afld(i)=0/RTOR/GP2 !!variant
+            !afld(i)=UPL(i)/RTOR/GP2 !!variant
+            afld(i)=0/RTOR/GP2 !!variant
         end do
         rh(ngrid)=1.d0
         rh1=rh(1)          !saving the first ASTRA radial grid element

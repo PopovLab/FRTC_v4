@@ -1,15 +1,15 @@
 {
-  "name": "230412",
+  "name": "1_Test",
   "setting": {
     "Comments": {
-      "value": "0.2 gap\n\n\n\n\n\n\n",
+      "value": "\n\n\n\n\n\n\n\n",
       "title": "Comments",
       "type": "text"
     },
     "Physical parameters": {
       "Freq": {
         "title": "Frequency",
-        "value": 0.92,
+        "value": 0.002,
         "unit": "GHz",
         "type": "float",
         "description": "RF frequency, GHz"
@@ -40,7 +40,7 @@
       },
       "dni2": {
         "title": "dni2",
-        "value": 0.017,
+        "value": 0.0,
         "type": "float",
         "description": "Ni2/Ni1, relative density of ions 2"
       },
@@ -58,7 +58,7 @@
       },
       "dni3": {
         "title": "dni3",
-        "value": 0.017,
+        "value": 0.0,
         "type": "float",
         "description": "Ni3/Ni1, relative density of ions 3"
       }
@@ -99,7 +99,7 @@
     "Numerical parameters": {
       "nr": {
         "title": "nr",
-        "value": 30,
+        "value": 100,
         "type": "int",
         "description": "radial grid number  <= 505"
       },
@@ -159,7 +159,7 @@
       },
       "pabs": {
         "title": "pabs",
-        "value": 0.1,
+        "value": 0.01,
         "type": "float",
         "description": "part of remaining power interp. as absorption"
       },
@@ -171,13 +171,13 @@
       },
       "ni1": {
         "title": "ni1",
-        "value": 20,
+        "value": 25,
         "type": "int",
         "description": "grid number in the left part of Vz plato"
       },
       "ni2": {
         "title": "ni2",
-        "value": 20,
+        "value": 25,
         "type": "int",
         "description": "grid number in the right part of Vz plato"
       },
@@ -277,34 +277,40 @@
     "grill parameters": {
       "Zplus": {
         "title": "Zplus",
-        "value": 6.0,
+        "value": 3.0,
         "type": "float",
         "unit": "cm",
         "description": "upper grill corner in centimeters"
       },
       "Zminus": {
         "title": "Zminus",
-        "value": -6.0,
+        "value": -3.0,
         "type": "float",
         "unit": "cm",
         "description": "lower grill corner in centimeters"
       },
       "ntet": {
         "title": "ntet",
-        "value": 21,
+        "value": 200,
         "type": "int",
         "description": "theta grid number"
       },
       "nnz": {
         "title": "nnz",
-        "value": 51,
+        "value": 50,
         "type": "int",
         "description": "iN_phi grid number"
       }
     },
     "spectrum": {
-      "spectrum_type": "spectrum_1D",
-      "source": "C:/Users/Astra_user/Desktop/spcpz_230412_05.dat",
+      "spectrum_type": "gaussian",
+      "options": {
+        "x_min": 3.0,
+        "x_max": 7.0,
+        "step": 0.01,
+        "bias": 5.0,
+        "sigma": 0.1
+      },
       "parameters": {
         "angle": {
           "title": "Angle",

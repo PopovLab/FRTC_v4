@@ -159,7 +159,7 @@
       },
       "pabs": {
         "title": "pabs",
-        "value": 0.001,
+        "value": 0.1,
         "type": "float",
         "description": "part of remaining power interp. as absorption"
       },
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "C:/Users/Astra_user/Desktop/spcpz.dat",
+      "source": "C:/Users/Astra_user/Desktop/spcpz_231222.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
