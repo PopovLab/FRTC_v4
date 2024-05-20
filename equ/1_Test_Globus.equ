@@ -1,13 +1,13 @@
 
 !----------------- Times -----------------
-TSTART = 0.01d0;
+TSTART = 0.01;
 TEND = 0.011;
-TINIT = 0.01d0;
+TINIT = 0.01;
 
 DROUT = 1.d-4;
 DPOUT = 1.d-4;
 DTOUT = 1.d-5;
-DSTART = 0.010;
+DSTART = 0.01;
 
 CF1 = 1.d-4;
 CF2 = 0.01;
@@ -17,12 +17,12 @@ CF3 = 0.011;
 
 NE:AS;
 !NE = 2*NEX;
-NE = (6.0 - 1.0)*(1-(RHO/ROC)**2) + 1;
+NE = (5.0 - 1.0)*(1-(RHO/ROC)**2) + 1;
 !NE = (2.0 - 0.003)*(1-(RHO/ROC)**2) + 0.003;
 
 TE:AS;
 !TE = 2*TEX;
-TE = (2 - 0.01)*(1-(RHO/ROC)**4) + 0.01;
+TE = (5.0 - 0.01)*(1-(RHO/ROC)**4) + 0.01;
 !----------------- Ion parametrs -----------------
 
 TI:AS; 
@@ -43,8 +43,8 @@ NEOCL(100)<:;
 !Current densities
 
 CU:EQ;
-CU = 0.3;
-CC="work(j,303)"; !+CCMHD;
+CU = 0.01;
+CC="work(j,303)";
 CUBS="work(j,301)";
 
 !----------------- Equilibrium solver -----------------

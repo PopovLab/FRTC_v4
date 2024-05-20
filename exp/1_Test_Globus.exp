@@ -1,19 +1,19 @@
  Test_FRTC vs FullWave
 Name   Time    Value      Error   Comment
 
-RTOR            0.375
-AB              0.25
-ABC             0.223
-BTOR            0.8
-IPL             0.25
+RTOR            1.48
+AB              0.8
+ABC             0.67
+BTOR            2.0
+IPL             2.0
 
 ELONM           2.0
-ELONG           1.95
+ELONG           1.8
 TRICH           0.4
-TRIAN           0.48
-AMJ             1.0
+TRIAN           0.3
+AMJ             2.0
 ZMJ             1.0
-SHIFT           0.0
+SHIFT           0.05
 UPDWN           0.0
 
 NB1             100
