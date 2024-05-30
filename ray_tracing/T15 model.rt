@@ -99,7 +99,7 @@
     "Numerical parameters": {
       "nr": {
         "title": "nr",
-        "value": 30,
+        "value": 10,
         "type": "int",
         "description": "radial grid number  <= 505"
       },
@@ -291,13 +291,13 @@
       },
       "ntet": {
         "title": "ntet",
-        "value": 21,
+        "value": 5,
         "type": "int",
         "description": "theta grid number"
       },
       "nnz": {
         "title": "nnz",
-        "value": 51,
+        "value": 21,
         "type": "int",
         "description": "iN_phi grid number"
       }

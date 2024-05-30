@@ -4,20 +4,21 @@
   "show_axis_labels": true,
   "shape": "1x3",
   "x_axis": "time",
-  "x_label": "Value [arb. unit]",
+  "x_label": "t, s",
   "sub_plots": [
     {
       "name": "ax1",
       "title": "Chart 1",
-      "y_label": "Value [arb. unit]",
+      "y_label": "I, MA",
       "data": [
+        "IPL",
         "ICD"
       ]
     },
     {
       "name": "ax2",
       "title": "Chart 2",
-      "y_label": "Value [arb. unit]",
+      "y_label": "I, MA",
       "data": [
         "Iohm"
       ]
@@ -25,7 +26,7 @@
     {
       "name": "ax3",
       "title": "Chart 3",
-      "y_label": "Value [arb. unit]",
+      "y_label": "U, V",
       "data": [
         "V",
         "Vexp"

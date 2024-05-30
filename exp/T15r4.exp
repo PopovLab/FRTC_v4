@@ -13,7 +13,7 @@ AMJ             1.                  !mass of main ions
 ZMJ             1.                  !charge of main ions
 BTOR            1.5                    !!!!!!CHANGE   0.5 - 2.0
 SHIFT           0.0 
-UPDWN           0.0   
+UPDWN           0.1   
 NB1             100
 TSTART          0.01
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!
