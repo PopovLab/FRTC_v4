@@ -1,17 +1,17 @@
 
 !----------------- Times -----------------
 TSTART = 0.011d0;
-TEND = 0.036;
-TINIT = 0.026d0;
+TEND = 0.040;
+TINIT = 0.025d0;
 
 DROUT = 1.d-4;
 DPOUT = 1.d-4;
 DTOUT = 1.d-5;
-DSTART = 0.026d0;
+DSTART = 0.025d0;
 
 CF1 = 1.d-4;
 CF2 = 0.028;
-CF3 = 0.034;
+CF3 = 0.0345;
 !----------------- Electrons parametrs -----------------
 CF14 = 1.5d0;
 
@@ -40,7 +40,7 @@ ZIM1 = 8;
 AIM2 = 12;
 ZIM2 = 6;
 
-ZEF = 1.6 + 1*FRAMP(0.033,CF3);
+ZEF = 1.8 + 1*FRAMP(0.033,CF3);
 
 !Its densities
 
@@ -90,17 +90,27 @@ ER = BTOR*(FRS*MU*VTOR/RTOR+VDIA-VPOL);
  !PE = POH+PEBM-PET*TI; PET = -PEI; 
  !PI = PIBM-PIT*TE; PIT = -PEI;
 
-CF16 = NEAV*RTOR*CCD2/CCD1;
+CF16 = NEAVB*RTOR*CCD2/CCD1;
+!----------------- Inductive part -----------------
+CF10 = -0.0045 ; !D0
+CF11 = 0.196; !Ur0
+CF12 = 0.023084; !IPL0
+
+DELTB(CF10,CF11,CF12,ABC):;
+CV9=AB-ABS(CV2);
+CV3=0.4*GP*IPL*RTOR*LOG(CV9/(0.13-CV2));
+CV8=TIMDER(CV3);
+
 !----------------- Radial output -----------------
 Te\TE\\TEX\0.6; Jneo\(CU-CUBS-CD); Jpar\CU\10; shir\SHEAR;
 Ne\NE\2; Elong\ELON; Cond\CC; Poh\POH\10;
 Ti\TI\0.6; E\UPL/RTOR/GP2; Jlh\CULH\10; q\1./MU;
-Ni\NHYDR\2; Shift\SHIF; Jbs\CUBS; Plh\PELH\10;
+Ni\NDEUT\2; Shift\SHIF; Jbs\CUBS; Plh\PELH\10;
 !----------------- Time output --------------
 q0_1./MU(0); q1_1./MU(ROC); Tec_TEC; eta_CF16;
 Ibs_CV11; Iohm_CV10; Ilh_CCD2; Itot_CV10+CCD2+CV11;
-Qlh_QLH; Plh_CCD1; Zeff_ZEF(ROC);
-Uloop_(UPL(ROC)); Ux_ZRD2
+Qlh_QLH; DR_CV2; Zeff_ZEF(ROC);
+Uloop_(UPL(ROC)+CV8); Ux_ZRD2; Ur_ZRD4; Ne_NEAVB; Te_TEAVB;
 
 
 

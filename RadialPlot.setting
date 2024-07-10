@@ -1,6 +1,6 @@
 {
   "title": "Radial Data",
-  "show_grid": false,
+  "show_grid": true,
   "show_axis_labels": true,
   "shape": "2x2",
   "x_axis": "rho",
@@ -22,7 +22,9 @@
       "title": "профили E",
       "y_label": "Density [10^19 m^-3]",
       "data": [
-        "Ne"
+        "Te",
+        "Ne",
+        "Ti"
       ]
     },
     {
@@ -39,8 +41,7 @@
       "title": "профили температуры",
       "y_label": "Temp [keV]",
       "data": [
-        "Te",
-        "Ti"
+        "E"
       ]
     }
   ]

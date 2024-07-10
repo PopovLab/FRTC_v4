@@ -9,7 +9,7 @@
     "Physical parameters": {
       "Freq": {
         "title": "Frequency",
-        "value": 0.002,
+        "value": 1.0,
         "unit": "GHz",
         "type": "float",
         "description": "RF frequency, GHz"
@@ -277,14 +277,14 @@
     "grill parameters": {
       "Zplus": {
         "title": "Zplus",
-        "value": 3.0,
+        "value": 6.0,
         "type": "float",
         "unit": "cm",
         "description": "upper grill corner in centimeters"
       },
       "Zminus": {
         "title": "Zminus",
-        "value": -3.0,
+        "value": -6.0,
         "type": "float",
         "unit": "cm",
         "description": "lower grill corner in centimeters"
@@ -305,10 +305,10 @@
     "spectrum": {
       "spectrum_type": "gaussian",
       "options": {
-        "x_min": 3.0,
-        "x_max": 7.0,
+        "x_min": 5.4,
+        "x_max": 9.4,
         "step": 0.01,
-        "bias": 5.0,
+        "bias": 7.4,
         "sigma": 0.1
       },
       "parameters": {

@@ -159,7 +159,7 @@
       },
       "pabs": {
         "title": "pabs",
-        "value": 0.1,
+        "value": 0.01,
         "type": "float",
         "description": "part of remaining power interp. as absorption"
       },

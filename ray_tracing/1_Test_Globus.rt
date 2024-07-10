@@ -9,7 +9,7 @@
     "Physical parameters": {
       "Freq": {
         "title": "Frequency",
-        "value": 1.0,
+        "value": 0.002,
         "unit": "GHz",
         "type": "float",
         "description": "RF frequency, GHz"
