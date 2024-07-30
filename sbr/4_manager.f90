@@ -263,8 +263,13 @@ contains
             ! вычисление g22 и g33
             call calculate_metrics(pa, tet)
 
+<<<<<<< Updated upstream
             yn3 = point%Ntor*dsqrt(g33)/co
             xm =0 ! point%Npol*dsqrt(g22)
+=======
+            yn3 = point%Ntor*dsqrt(g33) !/co 
+            xm = point%Npol*dsqrt(g22)  !/si
+>>>>>>> Stashed changes
 
             call disp2_iroot2(pa,xm,tet,f1,f2)
             
@@ -274,6 +279,11 @@ contains
                 return
             end if
         end do
+<<<<<<< Updated upstream
+=======
+        print *, 'error: no roots Nphi= ', point%Ntor
+        traj%mbad = 1 ! плохоая траектория
+>>>>>>> Stashed changes
     end      
 
     subroutine dqliter(dltpow, traj, h, powexit, iout) !sav2008
