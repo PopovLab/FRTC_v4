@@ -264,8 +264,8 @@ contains
             call calculate_metrics(pa, tet)
 
 <<<<<<< Updated upstream
-            yn3 = point%Ntor*dsqrt(g33)/co
-            xm =0 ! point%Npol*dsqrt(g22)
+            yn3 = point%Ntor*dsqrt(g33) !/co
+            xm =point%Npol*dsqrt(g22)
 =======
             yn3 = point%Ntor*dsqrt(g33) !/co 
             xm = point%Npol*dsqrt(g22)  !/si
