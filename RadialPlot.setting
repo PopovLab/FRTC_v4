@@ -3,7 +3,7 @@
   "show_grid": true,
   "show_axis_labels": true,
   "shape": "2x2",
-  "x_axis": "rho",
+  "x_axis": "ameter",
   "x_label": "Value [arb. unit]",
   "sub_plots": [
     {
@@ -24,7 +24,8 @@
       "data": [
         "Te",
         "Ne",
-        "Ti"
+        "Ti",
+        "Ni"
       ]
     },
     {
@@ -32,8 +33,7 @@
       "title": "профили мощности",
       "y_label": "Power [MW/m^3]",
       "data": [
-        "Plh",
-        "Poh"
+        "Zeff"
       ]
     },
     {

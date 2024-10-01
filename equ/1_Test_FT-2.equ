@@ -31,7 +31,7 @@ TI = 0.4*TE;
 AMAIN = AMJ;
 ZMAIN = ZMJ;
 
-ZEF = 1.0;
+ZEF = (3.4 - 1.4)*(1-(RHO/ROC)**2) + 1.4;
 
 NI = NE;
 NHYDR = NI;

@@ -1,13 +1,13 @@
 
 !----------------- Times -----------------
 TSTART = 0.01;
-TEND = 0.011;
+TEND = 0.05;
 TINIT = 0.01;
 
 DROUT = 1.d-4;
 DPOUT = 1.d-4;
 DTOUT = 1.d-5;
-DSTART = 0.01;
+
 
 CF1 = 1.d-4;
 CF2 = 0.01;
@@ -16,36 +16,43 @@ CF3 = 0.011;
 !----------------- Electrons parametrs -----------------
 
 NE:AS;
-!NE = 2*NEX;
-NE = (5.0 - 1.0)*(1-(RHO/ROC)**2) + 1;
-!NE = (2.0 - 0.003)*(1-(RHO/ROC)**2) + 0.003;
+NE = (6.3 - 0.3)*(1-(RHO/ROC)**4) + 0.6;
 
 TE:AS;
-!TE = 2*TEX;
-TE = (5.0 - 0.01)*(1-(RHO/ROC)**4) + 0.01;
+TE = (1.54 - 0.15)*(1-(RHO/ROC)**2) + 0.15;
 !----------------- Ion parametrs -----------------
 
 TI:AS; 
-TI = 0.8*TE;
+TI = (4.5 - 0.4)*(1-(RHO/ROC)**2)**2 + 0.4;
 
 !----------------- Impurities -----------------
-
 AMAIN = AMJ;
 ZMAIN = ZMJ;
 
-ZEF = 1.0;
+AIM1 = 12;
+ZIM1 = 6;
 
-NI = NE;
-NHYDR = NI;
+
+ZEF = (3.4 - 1.4)*(1-(RHO/ROC)**4) + 1.4;
+
+!Its densities
+
+NIZ1 = NE*(ZEF-ZMJ)/(ZIM1-ZMJ)/ZIM1;
+
+NI = NE*(ZIM1-ZEF)/(ZIM1-ZMJ)/ZMJ;
+
+
+NDEUT = NI - NIZ1;
 
 !----------------- Plasma parametrs -----------------
-NEOCL(100)<:;
+
 !Current densities
 
 CU:EQ;
-CU = 0.01;
-CC="work(j,303)";
-CUBS="work(j,301)";
+CU = CNHH;
+
+HC = HCSA; DC = DCSA; XC = XCSA;
+CC = CNSA; CD = CUBM + 0.*CULH;
 
 !----------------- Equilibrium solver -----------------
 
@@ -56,10 +63,10 @@ NEQUIL = 41;
 
 QLH = 0.001;
 
-debug:0.0001:DSTART::;
+debug:0.0001:TINIT::;
 saveprofiles::CF2:CF3:;
-lhcd2017(PELH):CF1:CF2:CF3:;
-drivencurrent(CULH,CAR32,CU)::CF2:CF3:;
+!lhcd2017(PELH):CF1:CF2:CF3:;
+!drivencurrent(CULH,CAR32,CU)::CF2:CF3:;
 
 CD = CULH;
 CCD1 = VINT(PELHB);
@@ -69,15 +76,18 @@ CV10 =  IINT(CU) - IINT(CUBS) - CCD2;
 CV11 =  IINT(CUBS);
 !----------------- Auxiliary quantities -----------------
 
+VTOR = 150; VPOL = VPSWW;
+ER = BTOR*(FRS*MU*VTOR/RTOR+VDIA-VPOL);
+
 !----------------- Radial output -----------------
-Te\TE; Jneo\(CU-CUBS-CD); Jpar\CU; shir\SHEAR;
-Ne\NE\2; Elong\ELON; Cond\CC; Poh\POH;
-Ti\TI; E\UPL/RTOR/GP2; Jlh\CULH; q\1./MU;
-Ni\NHYDR; Shift\SHIF; Jbs\CUBS; Plh\PELH;
-!----------------- Time output --------------
-q0_1./MU(0); q1_1./MU(ROC);
-Ibs_CV11; Iohm_CV10; Ilh_CCD2; Itot_CV10+CCD2+CV11;
-Qlh_QLH; Plh_CCD1;
+Te\TE; Zeff\ZEF; Jpar\CU; shir\SHEAR;
+Ne\NE; Elong\ELON; Cond\CC; PV\VP;
+Ti\TI; E\UPL/RTOR/GP2; Tria\TRIA; q\1./MU;
+Ni\NDEUT; Shift\SHIF; Jbs\CUBS; eps\AMETR/RTOR;
+!----------------- Time output -----------
+betp_BETAJB;
+
+
 
 
 
