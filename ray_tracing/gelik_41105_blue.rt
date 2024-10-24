@@ -1,5 +1,5 @@
 {
-  "name": "gelik_41105",
+  "name": "gelik_41105_blue",
   "setting": {
     "Comments": {
       "value": "Comments about ....",
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "gelik_red.dat",
+      "source": "gelik_blue.dat",
       "parameters": {
         "angle": {
           "title": "Angle",

@@ -35,10 +35,7 @@
       "name": "ax4",
       "title": "профили температуры",
       "y_label": "Value [arb. unit]",
-      "data": [
-        "Te",
-        "Ne"
-      ]
+      "data": []
     }
   ]
 }
