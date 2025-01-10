@@ -277,21 +277,21 @@
     "grill parameters": {
       "Zplus": {
         "title": "Zplus",
-        "value": 20.0,
+        "value": 34.0,
         "type": "float",
         "unit": "cm",
         "description": "upper grill corner in centimeters"
       },
       "Zminus": {
         "title": "Zminus",
-        "value": -20.0,
+        "value": -34.0,
         "type": "float",
         "unit": "cm",
         "description": "lower grill corner in centimeters"
       },
       "ntet": {
         "title": "ntet",
-        "value": 3,
+        "value": 5,
         "type": "int",
         "description": "theta grid number"
       },

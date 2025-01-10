@@ -1,0 +1,74 @@
+!!!!!!!!!!!!!!! Physical parameters !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 0.2        ! Frequency       RF frequency, GHz
+ 2.0        ! xmi1            Mi1/Mp,  relative mass of ions 1
+ 1.0        ! zi1             charge of ions 1
+ 16.0       ! xmi2            Mi2/Mp,  relative mass of ions 2
+ 0.0        ! zi2             charge of ions 2
+ 0.0        ! dni2            Ni2/Ni1, relative density of ions 2
+ 1.0        ! xmi3            Mi3/Mp,  relative mass of ions 3
+ 1.0        ! zi3             charge of ions 3
+ 0.0        ! dni3            Ni3/Ni1, relative density of ions 3
+!!!!!!!!!!!!!!! Parameters for alphas calculations !!!!!!!!!!!!!!!!!!!!!!!!!!
+ 0          ! itend0          if = 0, no alphas
+ 30.0       ! energy          max. perp. energy of alphas (MeV)
+ 10.0       ! factor          factor in alpha source
+ 0.3        ! dra             relative alpha source broadening (dr/a)
+ 30         ! kv              V_perp  greed number
+!!!!!!!!!!!!!!! Numerical parameters !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 30         ! nr              radial grid number  <= 505
+ 1e-06      ! hmin1           rel.(hr) min. step in the Fast comp. mode, <1.d0
+ 0.0001     ! rrange          rel.(hr) size of a 'turning' point region, <1.d0
+ 1e-06      ! eps             accuracy
+ 1.5        ! hdrob           h4 correction
+ 0.7        ! cleft           left Vz plato border shift (<1)
+ 1.5        ! cright          right Vz plato border shift (>1)
+ 0.25       ! cdel            (left part)/(Vz plato size)
+ 0.999      ! rbord           (relative radius of reflection, <1.
+ 0.2        ! pchm            threshold between 'strong' and weak' absorption, <1.
+ 0.01       ! pabs            part of remaining power interp. as absorption
+ 0.0001     ! pgiter          relative accuracy to stop iterations
+ 25         ! ni1             grid number in the left part of Vz plato
+ 25         ! ni2             grid number in the right part of Vz plato
+ 99         ! niterat         maximal number of iterations
+ 20         ! nmaxm(1)        permitted reflections at 0 iteration
+ 20         ! nmaxm(2)        permitted reflections at 2 iteration
+ 20         ! nmaxm(3)        permitted reflections at 3 iteration
+ 20         ! nmaxm(4)        permitted reflections at 4 iteration
+ 1000       ! maxstep2        maximal steps' number in Fast comp. mode
+ 1000       ! maxstep4        maximal steps' number in Slow comp. mode
+!!!!!!!!!!!!!!! Options !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 2          ! ipri            printing output monitoring: 0,1,2,3,4']
+ -1         ! iw              initial mode (slow=1, fast=-1)
+ 1          ! ismth           if=0, no smoothing in Ne(rho),Te(rho),Ti(rho)
+ 0          ! ismthalf        if=0, no smoothing in D_alpha(vperp)
+ 1          ! ismthout        if=0, no smoothing in output profiles
+ 1          ! inew            inew=0 for usual tokamak&Ntor_grill; 1 or 2 for g' in ST&Npol_grill
+ 1          ! itor            +-1, Btor direction in right coord{drho,dteta,dfi}
+ 1          ! ipol            +-1, Bpol direction in right coord{drho,dteta,dfi}
+!!!!!!!!!!!!!!! grill parameters !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ 5.0        ! Zplus           upper grill corner in centimeters
+ -5.0       ! Zminus          lower grill corner in centimeters
+ 5          ! ntet            theta grid number
+ 7          ! nnz             iN_phi grid number
+  1     ! spectr type 1 - 1D + spline approximation OFF!!positive Nfi; P_LH(a.units); points<1001
+0.0000 -88888. !0.57 first value=part(%) of total power in positive spectrum.
+!!negative Nfi; P_LH(a.units); points number<1001, arbitrary spacing.
+3.95000   8.259553615947094e-07
+3.95556   1.138438001293179e-05
+3.96111   0.00011524462653491218
+3.96667   0.000856821743063716
+3.97222   0.004678630697367944
+3.97778   0.01876314118214418
+3.98333   0.05526508216759998
+3.98889   0.11955137817099548
+3.99444   0.18994018081808306
+4.00000   0.22163462051767233
+4.00556   0.18994018081808306
+4.01111   0.11955137817099548
+4.01667   0.05526508216759998
+4.02222   0.01876314118214418
+4.02778   0.004678630697367944
+4.03333   0.000856821743063716
+4.03889   0.00011524462653491218
+4.04444   1.138438001293179e-05
+4.05000   8.259553615947094e-07
