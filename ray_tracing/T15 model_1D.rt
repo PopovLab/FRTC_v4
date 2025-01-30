@@ -1,8 +1,8 @@
 {
-  "name": "T15 model",
+  "name": "T15 model_1D",
   "setting": {
     "Comments": {
-      "value": "Comments about ....",
+      "value": "spectrum as Ntau",
       "title": "Comments",
       "type": "text"
     },
@@ -291,7 +291,7 @@
       },
       "ntet": {
         "title": "ntet",
-        "value": 7,
+        "value": 21,
         "type": "int",
         "description": "theta grid number"
       },
@@ -303,8 +303,23 @@
       }
     },
     "spectrum": {
-      "spectrum_type": "scatter_spectrum",
-      "source": "D:/dev/FRTC_v4/ray_tracing/spectrum.dat"
+      "spectrum_type": "spectrum_1D",
+      "source": "D:/dev/FRTC_v4/ray_tracing/Nzcorr.dat",
+      "parameters": {
+        "angle": {
+          "title": "Angle",
+          "value": 0.0,
+          "type": "float",
+          "unit": "deg",
+          "description": "Rotation on spectrum"
+        },
+        "spline": {
+          "title": "Spline",
+          "value": false,
+          "type": "logical",
+          "description": "Apply spline approximation"
+        }
+      }
     }
   }
 }
