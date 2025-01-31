@@ -431,9 +431,7 @@ contains
             zv2(j,k)=vrj(ni1+ni2+ipt1)
         end do
 
-        if (tcur.eq.0.305) then
-        call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
-        end if
+        !call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
 
         if(ismthout.ne.0) then
             do i=1,nrr
