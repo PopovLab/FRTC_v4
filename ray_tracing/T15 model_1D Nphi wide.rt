@@ -1,5 +1,5 @@
 {
-  "name": "T15 model_1D",
+  "name": "T15 model_1D Nphi wide",
   "setting": {
     "Comments": {
       "value": "spectrum as Ntau",
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/dev/FRTC_v4/ray_tracing/Nzcorr.dat",
+      "source": "D:/dev/FRTC_v4/ray_tracing/t15phi7x3ws1d.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
