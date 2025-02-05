@@ -264,8 +264,8 @@ contains
             call calculate_metrics(pa, tet)
 		
 		!!!!!Nparallel
-            yn3 = point%Ntor*dsqrt(g33)/co 
-            xm = 0 !!!point%Npol*dsqrt(g22)/si
+            yn3 = point%Ntor*dsqrt(g33)!/co 
+            xm = point%Npol*dsqrt(g22) !/si
 
 		!!!!!Ntor & Npol 2D
          !   yn3 = point%Ntor*dsqrt(g33)
