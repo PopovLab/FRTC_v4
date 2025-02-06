@@ -79,7 +79,7 @@
       },
       "factor": {
         "title": "factor",
-        "value": 10.0,
+        "value": 1.0,
         "type": "float",
         "description": "factor in alpha source"
       },
@@ -291,7 +291,7 @@
       },
       "ntet": {
         "title": "ntet",
-        "value": 21,
+        "value": 35,
         "type": "int",
         "description": "theta grid number"
       },
