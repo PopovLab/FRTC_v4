@@ -1,5 +1,5 @@
 {
-  "name": "T15 model_1D_5\u04454_000",
+  "name": "T15 model_1D_5x4_060_cut16",
   "setting": {
     "Comments": {
       "value": "spectrum as Ntau",
@@ -277,21 +277,21 @@
     "grill parameters": {
       "Zplus": {
         "title": "Zplus",
-        "value": 24.29,
+        "value": 34.29,
         "type": "float",
         "unit": "cm",
         "description": "upper grill corner in centimeters"
       },
       "Zminus": {
         "title": "Zminus",
-        "value": -24.29,
+        "value": -34.29,
         "type": "float",
         "unit": "cm",
         "description": "lower grill corner in centimeters"
       },
       "ntet": {
         "title": "ntet",
-        "value": 21,
+        "value": 35,
         "type": "int",
         "description": "theta grid number"
       },
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/dev/FRTC_v4/ray_tracing/spcpz_PAM_5x4_000_1x8.dat",
+      "source": "D:/dev/FRTC_v4/ray_tracing/spcpz_PAM_5x4_060_cut16.dat",
       "parameters": {
         "angle": {
           "title": "Angle",

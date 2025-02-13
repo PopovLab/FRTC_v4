@@ -263,7 +263,7 @@ contains
             ! вычисление g22 и g33
             call calculate_metrics(pa, tet)
 
-            yn3 = point%Ntor*dsqrt(g33)  /co
+            yn3 = point%Ntor*dsqrt(g33) /co
             !write(*,*)'Nz=',point%Ntor,'Nz/co=',point%Ntor/co,'Np=',yn3
             
             xm =point%Npol*dsqrt(g22)  /si
