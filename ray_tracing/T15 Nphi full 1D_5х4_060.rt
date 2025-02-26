@@ -1,5 +1,5 @@
 {
-  "name": "T15 model_1D_5\u04454_060",
+  "name": "T15 Nphi full 1D_5\u04454_060",
   "setting": {
     "Comments": {
       "value": "spectrum as Ntau",
@@ -291,7 +291,7 @@
       },
       "ntet": {
         "title": "ntet",
-        "value": 21,
+        "value": 35,
         "type": "int",
         "description": "theta grid number"
       },
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "spectrum_1D",
-      "source": "D:/dev/FRTC_v4/ray_tracing/spcpz_PAM_5x4x13.6cm_awg=110mm_bwg=18mm_pwg=10mm_dphi=-060.dat",
+      "source": "D:/dev/FRTC_v4/ray_tracing/t15phi5x4w60s1d.dat",
       "parameters": {
         "angle": {
           "title": "Angle",
