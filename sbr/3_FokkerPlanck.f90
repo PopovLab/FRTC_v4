@@ -32,7 +32,7 @@ subroutine fokkerplanck_compute(time, TAU)
     !real(wp) d0
     !integer jindex,kindex
     !common/dddql/ d0,jindex,kindex
-    parameter(dt0=0.1d0,h0=0.001d0)
+    parameter(dt0=0.1d0,h0=0.1d0)
 
     dtstep=TAU/dble(ntau) !seconds 
 
@@ -54,7 +54,7 @@ subroutine fokkerplanck_compute(time, TAU)
         do k=1,2
             kindex=k
             flag_d0=.TRUE. ! d(x) enable
-            znak=0 !2.d0*dble(k)-3.d0
+            znak=2.d0*dble(k)-3.d0
             fokker_planck = FokkerPlanck1D(znak*enorm(j), xend, vij(:,j), fij0(:,j,k))
             call fokker_planck%init_zero_diffusion
             do i=1, ntau
