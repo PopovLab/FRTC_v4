@@ -14,7 +14,7 @@ module trajectory_data
         !! value = 2 or 4, где была создана точка в driver2 или driver4 
     end type TrajectoryPoint
 
-    integer, parameter :: max_size = 10000
+    integer, parameter :: max_size = 1000000
 
     type Trajectory
         integer size
@@ -82,10 +82,10 @@ contains
         class(Trajectory), intent(inout) :: this
         class(TrajectoryPoint), intent(in) :: tpoint  
         this%size = this%size + 1
-        if (this%size > max_size) then
-            print *, 'слишком много точек'
-            stop
-        end if
+    !  if (this%size > max_size) then
+    !     print *, 'слишком много точек'
+    !        stop
+     !   end if
         this%points(this%size) = tpoint
     end subroutine
 

@@ -32,7 +32,7 @@ contains
         real(wp) tetin0, tetin, tet
 
         pabs = spectr%max_power*pabs0/1.d2
-        print *, 'pabs =', pabs, spectr%max_power, pabs0
+        !print *, 'pabs =', pabs, spectr%max_power, pabs0
         !lenstor = length
         htet = zero
         hr = 1.d0/dble(nr+1) !sav2008
@@ -266,7 +266,7 @@ contains
             yn3 = point%Ntor*dsqrt(g33) /co
             !write(*,*)'Nz=',point%Ntor,'Nz/co=',point%Ntor/co,'Np=',yn3
             
-            xm =point%Npol*dsqrt(g22)  /si
+            xm =point%Npol*dsqrt(g22) /si
             !write(*,*)'Nbi=',point%Npol,'Nz/co=',point%Npol/si,'Np=',xm
 
             call disp2_iroot2(pa,xm,tet,f1,f2)
@@ -277,7 +277,7 @@ contains
                 return
             end if
         end do
-        print *, 'error: no roots Nphi= ', point%Ntor
+        !print *, 'error: no roots Nphi= ', point%Ntor
         !traj%mbad = 1 ! плохоая траектория
     end      
 
