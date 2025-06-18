@@ -99,7 +99,7 @@
     "Numerical parameters": {
       "nr": {
         "title": "nr",
-        "value": 30,
+        "value": 90,
         "type": "int",
         "description": "radial grid number  <= 505"
       },
@@ -304,7 +304,7 @@
     },
     "spectrum": {
       "spectrum_type": "scatter_spectrum",
-      "source": "D:/dev/FRTC_v4/ray_tracing/t15phi7x3w2d.dat"
+      "source": "t15phi7x3w2d.dat"
     }
   }
 }
