@@ -432,7 +432,7 @@ contains
             zv2(j,k)=vrj(ni1+ni2+ipt1)
         end do
 
-        !call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
+        call view(tcur,ispectr,spectr%size,ntet)  !writing trajectories into a file
 
         if(ismthout.ne.0) then
             do i=1,nrr

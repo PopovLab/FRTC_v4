@@ -36,8 +36,9 @@ NAMEXP TEX POINTS 11 GRIDTYPE 1
 !*************** ne ********************************** new low profile
 NAMEXP NEX POINTS 11 GRIDTYPE 13
 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
-2.5 2.5 2.45 2.4 2.2 2 1.75 1.57 1.25 0.9 0.2
+2.5 2.5 2.45 2.4 2.2 2 1.75 1.65 1.58 1.1 0.2
 
+!!2.5 2.5 2.45 2.4 2.2 2 1.75 1.57 1.25 0.9 0.2
 
 !new profile
 NAMEXP CUX  POINTS  87 GRIDTYPE 10 
@@ -48,7 +49,7 @@ NAMEXP CUX  POINTS  87 GRIDTYPE 10
 
 POINTS   2   GRIDTYPE 1   NAMEXP ZEFX   NTIMES 1
 .180  
-1.6  1.6
+2.6  2.6
 
 
 
