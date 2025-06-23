@@ -11,8 +11,6 @@
       "title": "профили токов",
       "y_label": "Jlh [MA/m2]",
       "data": [
-        "J",
-        "Johm",
         "Jlh"
       ]
     },

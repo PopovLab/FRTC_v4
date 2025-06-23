@@ -5,7 +5,7 @@ DROUT=1.d-4;
 DTOUT=0.00001;
 TSTART = 0.11;
 TEND = 0.3;
-TINIT=0.18;
+TINIT=0.16;
 TSCALE = 0.06;
 TPAUSE = 0.3;
 
@@ -51,9 +51,9 @@ CCD3=VINT(CAR12B);  !absorbed power via collisional damping
 !===========Dynamic FRTC===========
 QLH=0.4d0;
 CF1=0.1d-3;  !interval between lhcd() calls, sec
-CF2=0.200d0;  !first call of lhcd()
+CF2=0.180d0;  !first call of lhcd()
 CF3=0.220d0;
-DSTART=0.198;
+DSTART=0.178;
 debug:0.0001:DSTART::;
 saveprofiles::CF2:CF3:;
 !saveprofiles2::CF2:CF3:;
@@ -65,7 +65,7 @@ drivencurrent(CULH,ZRD35,ZRD36,CAR12,CAR13,CAR32)::CF2:CF3:;
 !========Current Density==========
 !IPL=0.35*FRAMP(0.12,0.155)+0.15;
 !IPL=ZRD2;
-IPL=0.340;
+IPL=0.400;
 CU:Eq;
 !CU=1.0;
 CU=1 - (RHO / ROC)**0.0001;
